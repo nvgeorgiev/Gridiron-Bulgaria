@@ -1,5 +1,6 @@
 ﻿namespace GridironBulgaria.Web.Services.Teams
 {
+    using GridironBulgaria.Web.Models;
     using GridironBulgaria.Web.ViewModels.Teams;
     using System;
     using System.Collections.Generic;
@@ -11,5 +12,9 @@
         void Create(CreateTeamInputModel inputModel);
 
         IEnumerable<TeamInfoViewModel> GetAll();
+
+        Team GetTeamById(int id);
+
+        void DeleteById(int id);
     }
 }

@@ -72,5 +72,16 @@
 
             return allTeams;
         }
+
+        public void DeleteById(int id)
+        {
+            var team = this.GetTeamById(id);
+
+            this.database.Teams.Remove(team);
+            this.database.SaveChanges();
+        }
+
+        public Team GetTeamById(int id)
+            => this.database.Teams.FirstOrDefault(x => x.Id == id);
     }
 }
