@@ -59,7 +59,7 @@
             // 4. Details IActionResult
             // 5. Details View
 
-            return this.Redirect("/Teams"); ;
+            return this.Redirect("/Teams");
         }
 
         [HttpGet]
