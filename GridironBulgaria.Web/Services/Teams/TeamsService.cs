@@ -19,7 +19,7 @@
 
         public void Create(CreateTeamInputModel inputModel)
         {
-            var country = this.database.Countries.Where(c => c.Name == inputModel.CountryName).FirstOrDefault();
+            var country = this.database.Countries.Where(c => c.Name.ToLower() == inputModel.CountryName.ToLower()).FirstOrDefault();
 
             if (country == null)
             {
@@ -31,7 +31,7 @@
                 this.database.Countries.Add(country);
             }
 
-            var town = this.database.Towns.Where(t => t.Name == inputModel.TownName).FirstOrDefault();
+            var town = this.database.Towns.Where(t => t.Name.ToLower() == inputModel.TownName.ToLower()).FirstOrDefault();
 
             if (town == null)
             {
@@ -44,20 +44,24 @@
                 this.database.Towns.Add(town);
             }
 
+            var team = this.database.Teams.Where(tm => tm.Name.ToLower() == inputModel.Name.ToLower()).FirstOrDefault();
 
-            var team = new Team
+            if (team == null)
             {
-                Name = inputModel.Name,
-                LogoUrl = inputModel.LogoUrl,
-                CoverPhotoUrl = inputModel.CoverPhotoUrl,
-                CoachName = inputModel.CoachName,
-                TrainingsDescription = inputModel.TrainingsDescription,
-                ContactUrl = inputModel.ContactUrl,
-                Town = town,
-            };
+                team = new Team
+                {
+                    Name = inputModel.Name,
+                    LogoUrl = inputModel.LogoUrl,
+                    CoverPhotoUrl = inputModel.CoverPhotoUrl,
+                    CoachName = inputModel.CoachName,
+                    TrainingsDescription = inputModel.TrainingsDescription,
+                    ContactUrl = inputModel.ContactUrl,
+                    Town = town,
+                };
 
-            this.database.Teams.Add(team);
-            this.database.SaveChanges();
+                this.database.Teams.Add(team);
+                this.database.SaveChanges();
+            }                      
         }
 
         public IEnumerable<TeamInfoViewModel> GetAll()
