@@ -11,7 +11,7 @@
     {
         Task<int> CreateAsync(CreateTeamInputModel inputModel);
 
-        IEnumerable<TeamInfoViewModel> GetAll();
+        IEnumerable<TeamInfoViewModel> GetAllTeams();
 
         Team GetTeamById(int id);
 

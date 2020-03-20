@@ -67,7 +67,7 @@
             return team.Id;
         }
 
-        public IEnumerable<TeamInfoViewModel> GetAll()
+        public IEnumerable<TeamInfoViewModel> GetAllTeams()
         {
             var allTeams = this.database.Teams.Select(x => new TeamInfoViewModel
             {

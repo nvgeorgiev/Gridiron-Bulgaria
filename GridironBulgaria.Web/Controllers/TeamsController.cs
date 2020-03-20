@@ -23,7 +23,7 @@
         {
             var viewModel = new AllTeamsViewModel
             {
-                Teams = this.teamsService.GetAll(),
+                Teams = this.teamsService.GetAllTeams(),
             };
 
             return this.View(viewModel);
@@ -42,9 +42,10 @@
                 return this.View(input);
             }
 
-            await this.teamsService.CreateAsync(input);
+            var teamId = await this.teamsService.CreateAsync(input);
 
-            return this.Redirect("/Teams");
+            return this.Redirect("/Teams"); // TODO: when the Details view is ready, we want to redirect to it when the team is created.
+            // return this.RedirectToAction(nameof(this.Details), new { id = teamId })
         }
 
         public IActionResult Details(int id)
