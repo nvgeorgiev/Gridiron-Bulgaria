@@ -7,7 +7,7 @@
         public int Id { get; set; }
 
         [Display(Name = "Име (на Латиница)")]
-        [RegularExpression(@"[A-Z][a-z]*( [A-Z][a-z]*)", ErrorMessage = "Името трябва да съдържа две думи и всяка за започва с главна буква.")]
+        [RegularExpression(@"[A-Z][a-z]*( [A-Z][a-z]*)", ErrorMessage = "Името трябва да съдържа две думи и всяка да започва с главна буква.")]
         [Required(ErrorMessage = "Полето \"{0}\" e задължително.")]
         public string Name { get; set; }
 

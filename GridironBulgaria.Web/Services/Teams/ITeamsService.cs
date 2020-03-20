@@ -9,7 +9,7 @@
 
     public interface ITeamsService
     {
-        void Create(CreateTeamInputModel inputModel);
+        Task<int> CreateAsync(CreateTeamInputModel inputModel);
 
         IEnumerable<TeamInfoViewModel> GetAll();
 

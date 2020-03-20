@@ -19,7 +19,6 @@
             this.teamsService = teamsService;
         }
 
-        [HttpGet]
         public IActionResult Index()
         {
             var viewModel = new AllTeamsViewModel
@@ -30,26 +29,24 @@
             return this.View(viewModel);
         }
 
-        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(CreateTeamInputModel input)
+        public async Task<IActionResult> Create(CreateTeamInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(input);
             }
 
-            this.teamsService.Create(input);
+            await this.teamsService.CreateAsync(input);
 
             return this.Redirect("/Teams");
         }
 
-        [HttpGet]
         public IActionResult Details(int id)
         {
             // TODO: Details section
@@ -62,7 +59,6 @@
             return this.Redirect("/Teams");
         }
 
-        [HttpGet]
         public IActionResult Delete(int id)
         {
             this.teamsService.DeleteById(id);

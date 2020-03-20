@@ -3,6 +3,7 @@
     using GridironBulgaria.Web.Data;
     using GridironBulgaria.Web.Models;
     using GridironBulgaria.Web.ViewModels.Teams;
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -17,9 +18,9 @@
             this.database = database;
         }
 
-        public void Create(CreateTeamInputModel inputModel)
+        public async Task<int> CreateAsync(CreateTeamInputModel inputModel)
         {
-            var country = this.database.Countries.Where(c => c.Name.ToLower() == inputModel.CountryName.ToLower()).FirstOrDefault();
+            var country = await this.database.Countries.FirstOrDefaultAsync(c => c.Name.ToLower() == inputModel.CountryName.ToLower());
 
             if (country == null)
             {
@@ -28,10 +29,10 @@
                     Name = inputModel.CountryName,
                 };
 
-                this.database.Countries.Add(country);
+                await this.database.Countries.AddAsync(country);
             }
 
-            var town = this.database.Towns.Where(t => t.Name.ToLower() == inputModel.TownName.ToLower()).FirstOrDefault();
+            var town = await this.database.Towns.FirstOrDefaultAsync(t => t.Name.ToLower() == inputModel.TownName.ToLower());
 
             if (town == null)
             {
@@ -41,10 +42,10 @@
                     Country = country,
                 };
 
-                this.database.Towns.Add(town);
+                await this.database.Towns.AddAsync(town);
             }
 
-            var team = this.database.Teams.Where(tm => tm.Name.ToLower() == inputModel.Name.ToLower()).FirstOrDefault();
+            var team = await this.database.Teams.FirstOrDefaultAsync(tm => tm.Name.ToLower() == inputModel.Name.ToLower());
 
             if (team == null)
             {
@@ -59,9 +60,11 @@
                     Town = town,
                 };
 
-                this.database.Teams.Add(team);
-                this.database.SaveChanges();
-            }                      
+                await this.database.Teams.AddAsync(team);
+                await this.database.SaveChangesAsync();
+            }
+
+            return team.Id;
         }
 
         public IEnumerable<TeamInfoViewModel> GetAll()
