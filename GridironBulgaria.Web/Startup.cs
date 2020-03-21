@@ -37,6 +37,11 @@ namespace GridironBulgaria.Web
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+            });
+
             services.AddTransient<ITeamsService, TeamsService>();
         }
 

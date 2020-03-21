@@ -8,6 +8,7 @@
     using GridironBulgaria.Web.Models;
     using GridironBulgaria.Web.Services.Teams;
     using GridironBulgaria.Web.ViewModels.Teams;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class TeamsController : Controller
@@ -29,11 +30,13 @@
             return this.View(viewModel);
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpPost]
         public async Task<IActionResult> Create(CreateTeamInputModel input)
         {
@@ -60,6 +63,7 @@
             return this.Redirect("/Teams");
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
         public IActionResult Delete(int id)
         {
             this.teamsService.DeleteById(id);
