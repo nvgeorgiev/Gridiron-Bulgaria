@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-GridironBulgaria.Web-C280A97F-8434-4028-B9D5-B5322C28DB5A</UserSecretsId>
+    <ApplicationIcon>wwwroot\favicon\favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
 
