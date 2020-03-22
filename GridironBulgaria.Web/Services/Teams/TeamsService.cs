@@ -80,15 +80,25 @@
             return allTeams;
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteByIdAsync(int id)
         {
-            var team = this.GetTeamById(id);
+            var team = await this.GetTeamByIdAsync(id);
 
             this.database.Teams.Remove(team);
-            this.database.SaveChanges();
+            await this.database.SaveChangesAsync();
         }
 
-        public Team GetTeamById(int id)
-            => this.database.Teams.FirstOrDefault(x => x.Id == id);
+        public async Task<Team> GetTeamByIdAsync(int id)
+            => await this.database.Teams.FindAsync(id);
+
+        //public Task<TeamDetailsViewModel> TeamDetails(int id)
+        //{
+        //    var team = this.GetTeamById(id);
+
+        //    var teamDetails = new TeamDetailsViewModel
+        //    {
+
+        //    };
+        //}
     }
 }

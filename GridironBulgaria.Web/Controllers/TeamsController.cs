@@ -64,9 +64,9 @@
         }
 
         [Authorize(Policy = "RequireAdminRole")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            this.teamsService.DeleteById(id);
+            await this.teamsService.DeleteByIdAsync(id);
 
             return this.Redirect("/Teams");
         }

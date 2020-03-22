@@ -13,8 +13,10 @@
 
         IEnumerable<TeamInfoViewModel> GetAllTeams();
 
-        Team GetTeamById(int id);
+        //Task<TeamDetailsViewModel> TeamDetails(int id);
 
-        void DeleteById(int id);
+        Task<Team> GetTeamByIdAsync(int id);
+
+        Task DeleteByIdAsync(int id);
     }
 }
