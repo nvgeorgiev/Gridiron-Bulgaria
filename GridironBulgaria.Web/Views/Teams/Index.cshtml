@@ -1,4 +1,4 @@
-﻿@model GridironBulgaria.Web.ViewModels.Teams.AllTeamsViewModel
+﻿@model IEnumerable<GridironBulgaria.Web.ViewModels.Teams.TeamInfoViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -20,17 +20,17 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Teams)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @item.Name
-                    @item.LogoUrl
+                    @item.Name                    
+                    <img src="@item.LogoUrl" alt="" height="100" width="100">
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a>
                     @if (User.IsInRole("Admin"))
                     {
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <a asp-action = "Delete" asp-route-id="@item.Id" onclick="return confirm('Сигурен ли си, че искаш да изтриеш отбора ?')" > Delete </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Сигурен ли си, че искаш да изтриеш отбора ?')"> Delete </a>
                     }
                 </td>
             </tr>

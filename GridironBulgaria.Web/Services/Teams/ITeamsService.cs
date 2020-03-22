@@ -9,14 +9,14 @@
 
     public interface ITeamsService
     {
+        Task<IEnumerable<TeamInfoViewModel>> GetAllTeamsAsync();
+
         Task<int> CreateAsync(CreateTeamInputModel inputModel);
 
-        IEnumerable<TeamInfoViewModel> GetAllTeams();
-
-        //Task<TeamDetailsViewModel> TeamDetails(int id);
-
-        Task<Team> GetTeamByIdAsync(int id);
+        Task<TeamDetailsViewModel> TeamDetailsAsync(int id);
 
         Task DeleteByIdAsync(int id);
+
+        Task<Team> GetTeamByIdAsync(int id);
     }
 }

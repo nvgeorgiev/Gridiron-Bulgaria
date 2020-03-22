@@ -20,14 +20,11 @@
             this.teamsService = teamsService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var viewModel = new AllTeamsViewModel
-            {
-                Teams = this.teamsService.GetAllTeams(),
-            };
+            var allTeams = await this.teamsService.GetAllTeamsAsync();
 
-            return this.View(viewModel);
+            return this.View(allTeams);
         }
 
         [Authorize(Policy = "RequireAdminRole")]
@@ -47,20 +44,19 @@
 
             var teamId = await this.teamsService.CreateAsync(input);
 
-            return this.Redirect("/Teams"); // TODO: when the Details view is ready, we want to redirect to it when the team is created.
-            // return this.RedirectToAction(nameof(this.Details), new { id = teamId })
+            return this.RedirectToAction(nameof(this.Details), new { id = teamId });
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            // TODO: Details section
-            // 1. Details ViewModel
-            // 2. Details IService
-            // 3. Details Service
-            // 4. Details IActionResult
-            // 5. Details View
+            if (!this.ModelState.IsValid)
+            {
+                return NotFound();
+            }
 
-            return this.Redirect("/Teams");
+            var teamDetails = await this.teamsService.TeamDetailsAsync(id);
+
+            return this.View(teamDetails);
         }
 
         [Authorize(Policy = "RequireAdminRole")]

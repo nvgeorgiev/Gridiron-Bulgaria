@@ -1,11 +1,12 @@
-﻿using GridironBulgaria.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GridironBulgaria.Web.ViewModels.Teams
+﻿namespace GridironBulgaria.Web.ViewModels.Teams
 {
+    using GridironBulgaria.Web.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class TeamDetailsViewModel
     {
         public int Id { get; set; }
@@ -16,14 +17,19 @@ namespace GridironBulgaria.Web.ViewModels.Teams
 
         public string CoverPhotoUrl { get; set; }
 
+        [Display(Name = "Треньор:")]
         public string CoachName { get; set; }
 
+        [Display(Name = "Тренировки:")]
         public string TrainingsDescription { get; set; }
 
+        [Display(Name = "Контакти:")]
         public string ContactUrl { get; set; }
 
+        [Display(Name = "Изиграни мачове (от 2020г. до сега):")]
         public int GamesPlayedCounter { get; set; }
 
-        public virtual ICollection<PhotoAlbum> TeamPhotoAlbums { get; set; }
+        [Display(Name = "Галерия:")]
+        public virtual IEnumerable<PhotoAlbum> TeamPhotoAlbums { get; set; }
     }
 }

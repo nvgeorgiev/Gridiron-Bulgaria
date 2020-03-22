@@ -18,6 +18,19 @@
             this.database = database;
         }
 
+        public async Task<IEnumerable<TeamInfoViewModel>> GetAllTeamsAsync()
+        {
+            var allTeams = await this.database.Teams.Select(x => new TeamInfoViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                LogoUrl = x.LogoUrl,
+                CountryName = x.Town.Country.Name,
+            }).ToListAsync();
+
+            return allTeams;
+        }
+
         public async Task<int> CreateAsync(CreateTeamInputModel inputModel)
         {
             var country = await this.database.Countries.FirstOrDefaultAsync(c => c.Name.ToLower() == inputModel.CountryName.ToLower());
@@ -67,17 +80,28 @@
             return team.Id;
         }
 
-        public IEnumerable<TeamInfoViewModel> GetAllTeams()
+        public async Task<TeamDetailsViewModel> TeamDetailsAsync(int id)
         {
-            var allTeams = this.database.Teams.Select(x => new TeamInfoViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                LogoUrl = x.LogoUrl,
-                CountryName = x.Town.Country.Name,
-            }).ToList();
+            var team = await this.GetTeamByIdAsync(id);
 
-            return allTeams;
+            var gamesPlayed = await this.database.Games.Where(gp => gp.HomeTeamId == team.Id || gp.AwayTeamId == team.Id).ToListAsync();
+
+            var teamPhotoAlbums = await this.database.PhotoAlbums.Where(gp => gp.HomeTeamId == team.Id || gp.AwayTeamId == team.Id).ToListAsync();
+
+            var teamDetails = new TeamDetailsViewModel
+            {
+                Id = team.Id,
+                LogoUrl = team.LogoUrl,
+                Name = team.Name,
+                CoverPhotoUrl = team.CoverPhotoUrl,
+                CoachName = team.CoachName,
+                TrainingsDescription = team.TrainingsDescription,
+                ContactUrl = team.ContactUrl,
+                GamesPlayedCounter = gamesPlayed.Count,
+                TeamPhotoAlbums = teamPhotoAlbums,
+            };
+
+            return teamDetails;
         }
 
         public async Task DeleteByIdAsync(int id)
@@ -89,16 +113,6 @@
         }
 
         public async Task<Team> GetTeamByIdAsync(int id)
-            => await this.database.Teams.FindAsync(id);
-
-        //public Task<TeamDetailsViewModel> TeamDetails(int id)
-        //{
-        //    var team = this.GetTeamById(id);
-
-        //    var teamDetails = new TeamDetailsViewModel
-        //    {
-
-        //    };
-        //}
+            => await this.database.Teams.FirstOrDefaultAsync(x => x.Id == id);
     }
 }

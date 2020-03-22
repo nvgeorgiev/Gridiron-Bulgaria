@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using GridironBulgaria.Web.ViewModels.Teams;
-namespace GridironBulgaria.Web.Data
+﻿namespace GridironBulgaria.Web.Data
 {
     using GridironBulgaria.Web.Data.Configurations;
     using GridironBulgaria.Web.Models;
@@ -41,14 +39,5 @@ namespace GridironBulgaria.Web.Data
 
             modelBuilder.ApplyConfiguration(new PhotoAlbumConfiguration());
         }
-
-
-        public DbSet<GridironBulgaria.Web.ViewModels.Teams.CreateTeamInputModel> CreateTeamInputModel { get; set; }
-
-
-        public DbSet<GridironBulgaria.Web.ViewModels.Teams.TeamInfoViewModel> TeamInfoViewModel { get; set; }
-
-
-        public DbSet<GridironBulgaria.Web.ViewModels.Teams.AllTeamsViewModel> AllTeamsViewModel { get; set; }
     }
 }
