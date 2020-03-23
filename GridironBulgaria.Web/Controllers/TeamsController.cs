@@ -30,7 +30,7 @@
         [Authorize(Policy = "RequireAdminRole")]
         public IActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         [Authorize(Policy = "RequireAdminRole")]
@@ -51,7 +51,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             var teamDetails = await this.teamsService.TeamDetailsAsync(id);
@@ -72,7 +72,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             var editViewModel = await this.teamsService.EditTeamViewAsync(id);
@@ -86,7 +86,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             var teamId = await this.teamsService.EditTeamAsync(editInput);
@@ -97,7 +97,7 @@
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
