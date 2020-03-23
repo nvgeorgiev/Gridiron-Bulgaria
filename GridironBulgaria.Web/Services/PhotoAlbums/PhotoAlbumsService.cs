@@ -1,6 +1,7 @@
 ﻿namespace GridironBulgaria.Web.Services.PhotoAlbums
 {
     using GridironBulgaria.Web.Data;
+    using GridironBulgaria.Web.Models;
     using GridironBulgaria.Web.ViewModels.PhotoAlbums;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
@@ -28,6 +29,28 @@
             }).ToListAsync();
 
             return allPhotoAlbums;
+        }
+
+        public async Task<int> PhotoAlbumsCreateAsync(CreatePhotoAlbumsViewModel inputModel)
+        {
+            var homeTeam = await this.database.Teams.FirstOrDefaultAsync(h => h.Name.ToLower() == inputModel.HomeTeamName.ToLower());
+
+            var awayTeam = await this.database.Teams.FirstOrDefaultAsync(a => a.Name.ToLower() == inputModel.AwayTeamName.ToLower());
+
+            var photoAlbum = new PhotoAlbum
+            {
+                Title = inputModel.Title,
+                ThumbnailPhotoUrl = inputModel.ThumbnailPhotoUrl,
+                FacebookAlbumUrl = inputModel.FacebookAlbumUrl,
+                EventDate = inputModel.EventDate,
+                HomeTeam = homeTeam,
+                AwayTeam = awayTeam,
+            };
+
+            await this.database.PhotoAlbums.AddAsync(photoAlbum);
+            await this.database.SaveChangesAsync();
+
+            return photoAlbum.Id;
         }
     }
 }

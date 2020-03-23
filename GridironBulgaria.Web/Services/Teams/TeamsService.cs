@@ -83,8 +83,6 @@
         {
             var team = await this.GetTeamByIdAsync(id);
 
-            var gamesPlayed = await this.database.Games.Where(gp => gp.HomeTeamId == team.Id || gp.AwayTeamId == team.Id).ToListAsync();
-
             var teamPhotoAlbums = await this.database.PhotoAlbums.Where(gp => gp.HomeTeamId == team.Id || gp.AwayTeamId == team.Id).ToListAsync();
 
             var teamDetails = new TeamDetailsViewModel
@@ -96,7 +94,7 @@
                 CoachName = team.CoachName,
                 TrainingsDescription = team.TrainingsDescription,
                 ContactUrl = team.ContactUrl,
-                GamesPlayedCounter = gamesPlayed.Count,
+                GamesPlayedCounter = teamPhotoAlbums.Count,
                 TeamPhotoAlbums = teamPhotoAlbums,
             };
 

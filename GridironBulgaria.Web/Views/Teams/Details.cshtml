@@ -48,9 +48,10 @@
 <div>
     @foreach (var item in Model.TeamPhotoAlbums)
     {
-        <div>
-            @item.Title
-        </div>
+    <div>
+        <img src="@item.ThumbnailPhotoUrl" alt="" height="100" width="150">
+        <a href="@item.FacebookAlbumUrl" target="_blank">@item.Title - @item.EventDate</a>
+    </div>
     }
 </div>
 <div>

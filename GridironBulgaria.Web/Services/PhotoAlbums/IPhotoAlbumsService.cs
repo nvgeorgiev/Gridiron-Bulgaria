@@ -8,5 +8,6 @@
     {
         Task<IEnumerable<PhotoAlbumsViewModel>> GetAllPhotoAlbumsAsync();
 
+        Task<int> PhotoAlbumsCreateAsync(CreatePhotoAlbumsViewModel inputModel);
     }
 }
