@@ -33,19 +33,60 @@
 
         public async Task<int> PhotoAlbumsCreateAsync(CreatePhotoAlbumsViewModel inputModel)
         {
-            var homeTeam = await this.database.Teams.FirstOrDefaultAsync(h => h.Name.ToLower() == inputModel.HomeTeamName.ToLower());
+            Team homeTeam = null;
 
-            var awayTeam = await this.database.Teams.FirstOrDefaultAsync(a => a.Name.ToLower() == inputModel.AwayTeamName.ToLower());
+            Team awayTeam = null;
 
-            var photoAlbum = new PhotoAlbum
+            if (inputModel.HomeTeamName != null)
             {
-                Title = inputModel.Title,
-                ThumbnailPhotoUrl = inputModel.ThumbnailPhotoUrl,
-                FacebookAlbumUrl = inputModel.FacebookAlbumUrl,
-                EventDate = inputModel.EventDate,
-                HomeTeam = homeTeam,
-                AwayTeam = awayTeam,
-            };
+                homeTeam = await this.database.Teams.FirstOrDefaultAsync(h => h.Name.ToLower() == inputModel.HomeTeamName.ToLower());
+            }
+
+            if (inputModel.AwayTeamName != null)
+            {
+                awayTeam = await this.database.Teams.FirstOrDefaultAsync(a => a.Name.ToLower() == inputModel.AwayTeamName.ToLower());
+            }
+
+            PhotoAlbum photoAlbum;
+
+            if (homeTeam != null && awayTeam == null)
+            {
+                photoAlbum = new PhotoAlbum
+                {
+                    Title = inputModel.Title,
+                    ThumbnailPhotoUrl = inputModel.ThumbnailPhotoUrl,
+                    FacebookAlbumUrl = inputModel.FacebookAlbumUrl,
+                    EventDate = inputModel.EventDate,
+                    HomeTeam = homeTeam,
+                    AwayTeamId = null,
+                    AwayTeam = null,
+                };
+            }
+            else if (homeTeam == null && awayTeam != null)
+            {
+                photoAlbum = new PhotoAlbum
+                {
+                    Title = inputModel.Title,
+                    ThumbnailPhotoUrl = inputModel.ThumbnailPhotoUrl,
+                    FacebookAlbumUrl = inputModel.FacebookAlbumUrl,
+                    EventDate = inputModel.EventDate,
+                    HomeTeamId = null,
+                    HomeTeam = null,
+                    AwayTeam = awayTeam,
+                };
+            }
+            else
+            {
+                photoAlbum = new PhotoAlbum
+                {
+                    Title = inputModel.Title,
+                    ThumbnailPhotoUrl = inputModel.ThumbnailPhotoUrl,
+                    FacebookAlbumUrl = inputModel.FacebookAlbumUrl,
+                    EventDate = inputModel.EventDate,
+                    HomeTeam = homeTeam,
+                    AwayTeam = awayTeam,
+                };
+            }
 
             await this.database.PhotoAlbums.AddAsync(photoAlbum);
             await this.database.SaveChangesAsync();

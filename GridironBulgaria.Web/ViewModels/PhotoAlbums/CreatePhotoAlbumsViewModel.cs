@@ -23,11 +23,9 @@
         public string EventDate { get; set; }
 
         [Display(Name = "Име на отбора домакин (на Латиница)")]
-        [Required(ErrorMessage = "Полето \"{0}\" e задължително.")]
         public string HomeTeamName { get; set; }
 
         [Display(Name = "Име на отбора гост (на Латиница)")]
-        [Required(ErrorMessage = "Полето \"{0}\" e задължително.")]
         public string AwayTeamName { get; set; }
     }
 }
