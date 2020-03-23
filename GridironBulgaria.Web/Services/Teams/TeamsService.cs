@@ -112,6 +112,80 @@
             await this.database.SaveChangesAsync();
         }
 
+        public async Task<EditTeamViewModel> EditTeamViewAsync(int id)
+        {
+            var teamToEdit = await this.GetTeamByIdAsync(id);
+
+            var townName = await this.database.Towns.FirstOrDefaultAsync(t => t.Id == teamToEdit.TownId);
+
+            var countryName = await this.database.Countries.FirstOrDefaultAsync(c => c.Id == townName.CountryId);
+
+            var editTeamInput = new EditTeamViewModel
+            {
+                Id = teamToEdit.Id,
+                Name = teamToEdit.Name,
+                LogoUrl = teamToEdit.LogoUrl,
+                CoverPhotoUrl = teamToEdit.CoverPhotoUrl,
+                CoachName = teamToEdit.CoachName,
+                TrainingsDescription = teamToEdit.TrainingsDescription,
+                ContactUrl = teamToEdit.ContactUrl,
+                CountryName = countryName.Name,
+                TownName = townName.Name,
+            };
+
+            return editTeamInput;
+        }
+
+        public async Task<int> EditTeamAsync(EditTeamViewModel editInputModel)
+        {
+            var country = await this.database.Countries.FirstOrDefaultAsync(c => c.Name.ToLower() == editInputModel.CountryName.ToLower());
+
+            if (country == null)
+            {
+                country = new Country
+                {
+                    Name = editInputModel.CountryName,
+                };
+
+                await this.database.Countries.AddAsync(country);
+            }
+
+            var town = await this.database.Towns.FirstOrDefaultAsync(t => t.Name.ToLower() == editInputModel.TownName.ToLower());
+
+            if (town == null)
+            {
+                town = new Town
+                {
+                    Name = editInputModel.TownName,
+                    Country = country,
+                };
+
+                await this.database.Towns.AddAsync(town);
+            }
+
+            var team = await this.database.Teams.FirstOrDefaultAsync(tm => tm.Name.ToLower() == editInputModel.Name.ToLower());
+
+            if (team == null)
+            {
+                team = new Team
+                {
+                    Id = editInputModel.Id,
+                    Name = editInputModel.Name,
+                    LogoUrl = editInputModel.LogoUrl,
+                    CoverPhotoUrl = editInputModel.CoverPhotoUrl,
+                    CoachName = editInputModel.CoachName,
+                    TrainingsDescription = editInputModel.TrainingsDescription,
+                    ContactUrl = editInputModel.ContactUrl,
+                    Town = town,
+                };
+
+                this.database.Teams.Update(team);
+                await this.database.SaveChangesAsync();
+            }
+
+            return team.Id;
+        }
+
         public async Task<Team> GetTeamByIdAsync(int id)
             => await this.database.Teams.FirstOrDefaultAsync(x => x.Id == id);
     }

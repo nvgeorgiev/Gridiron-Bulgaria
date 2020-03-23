@@ -67,6 +67,33 @@
             return this.Redirect("/Teams");
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return NotFound();
+            }
+
+            var editViewModel = await this.teamsService.EditTeamViewAsync(id);
+
+            return this.View(editViewModel);
+        }
+
+        [Authorize(Policy = "RequireAdminRole")]
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditTeamViewModel editInput)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return NotFound();
+            }
+
+            var teamId = await this.teamsService.EditTeamAsync(editInput);
+
+            return this.RedirectToAction(nameof(this.Details), new { id = teamId });
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

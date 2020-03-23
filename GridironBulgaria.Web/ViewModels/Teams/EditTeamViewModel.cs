@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateTeamInputModel
+    public class EditTeamViewModel
     {
         public int Id { get; set; }
 

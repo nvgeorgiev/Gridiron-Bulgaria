@@ -17,6 +17,10 @@
 
         Task DeleteByIdAsync(int id);
 
+        Task<EditTeamViewModel> EditTeamViewAsync(int id);
+
+        Task<int> EditTeamAsync(EditTeamViewModel editInputModel);
+
         Task<Team> GetTeamByIdAsync(int id);
     }
 }
