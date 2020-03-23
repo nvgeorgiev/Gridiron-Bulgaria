@@ -1,15 +1,12 @@
 ﻿namespace GridironBulgaria.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Threading.Tasks;
     using GridironBulgaria.Web.Models;
     using GridironBulgaria.Web.Services.Teams;
     using GridironBulgaria.Web.ViewModels.Teams;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using System.Diagnostics;
+    using System.Threading.Tasks;
 
     public class TeamsController : Controller
     {

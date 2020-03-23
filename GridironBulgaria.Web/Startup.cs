@@ -15,6 +15,7 @@ namespace GridironBulgaria.Web
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using GridironBulgaria.Web.Services.Teams;
+    using GridironBulgaria.Web.Services.PhotoAlbums;
 
     public class Startup
     {
@@ -43,6 +44,7 @@ namespace GridironBulgaria.Web
             });
 
             services.AddTransient<ITeamsService, TeamsService>();
+            services.AddTransient<IPhotoAlbumsService, PhotoAlbumsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -16,6 +16,12 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LogoUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -24,8 +30,8 @@
         {
             <tr>
                 <td>
-                    @item.Name                    
                     <img src="@item.LogoUrl" alt="" height="100" width="100">
+                    @item.Name                    
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a>
                     @if (User.IsInRole("Admin"))
                     {
