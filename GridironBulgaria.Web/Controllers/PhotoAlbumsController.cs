@@ -3,6 +3,7 @@
     using GridironBulgaria.Web.Models;
     using GridironBulgaria.Web.Services.PhotoAlbums;
     using GridironBulgaria.Web.ViewModels.PhotoAlbums;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using System.Diagnostics;
     using System.Threading.Tasks;
@@ -23,24 +24,59 @@
             return this.View(allTeams);
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
         public IActionResult Create()
         {
             return this.View();
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpPost]
-        public async Task<IActionResult> Create(CreatePhotoAlbumsViewModel input)
+        public async Task<IActionResult> Create(CreatePhotoAlbumViewModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(input);
             }
 
-            var photoAlbumsId = await this.photoAlbumsService.PhotoAlbumsCreateAsync(input);
+            await this.photoAlbumsService.PhotoAlbumCreateAsync(input);
+
+            return this.Redirect("/PhotoAlbums");            
+        }
+
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.photoAlbumsService.DeleteByIdAsync(id);
 
             return this.Redirect("/PhotoAlbums");
+        }
 
-            //return this.RedirectToAction(nameof(this.Details), new { id = teamId });
+        [Authorize(Policy = "RequireAdminRole")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.NotFound();
+            }
+
+            var editViewModel = await this.photoAlbumsService.EditPhotoAlbumViewAsync(id);
+
+            return this.View(editViewModel);
+        }
+
+        [Authorize(Policy = "RequireAdminRole")]
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditPhotoAlbumViewModel editInput)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.NotFound();
+            }
+
+            var teamId = await this.photoAlbumsService.EditPhotoAlbumAsync(editInput);
+
+            return this.Redirect("/PhotoAlbums");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

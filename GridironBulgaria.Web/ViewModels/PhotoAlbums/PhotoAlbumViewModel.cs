@@ -1,6 +1,6 @@
 ﻿namespace GridironBulgaria.Web.ViewModels.PhotoAlbums
 {
-    public class PhotoAlbumsViewModel
+    public class PhotoAlbumViewModel
     {
         public int Id { get; set; }
 

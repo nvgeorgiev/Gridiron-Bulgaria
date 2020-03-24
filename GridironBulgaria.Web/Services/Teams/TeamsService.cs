@@ -109,6 +109,7 @@
             await this.database.SaveChangesAsync();
         }
 
+        // HttpGet Edit Method
         public async Task<EditTeamViewModel> EditTeamViewAsync(int id)
         {
             var teamToEdit = await this.GetTeamByIdAsync(id);
@@ -133,6 +134,7 @@
             return editTeamInput;
         }
 
+        // HttpPost Edit Method
         public async Task<int> EditTeamAsync(EditTeamViewModel editInputModel)
         {
             var country = await this.database.Countries.FirstOrDefaultAsync(c => c.Name.ToLower() == editInputModel.CountryName.ToLower());
@@ -160,25 +162,20 @@
                 await this.database.Towns.AddAsync(town);
             }
 
-            var team = await this.database.Teams.FirstOrDefaultAsync(tm => tm.Name.ToLower() == editInputModel.Name.ToLower());
-
-            if (team == null)
+            var team = new Team
             {
-                team = new Team
-                {
-                    Id = editInputModel.Id,
-                    Name = editInputModel.Name,
-                    LogoUrl = editInputModel.LogoUrl,
-                    CoverPhotoUrl = editInputModel.CoverPhotoUrl,
-                    CoachName = editInputModel.CoachName,
-                    TrainingsDescription = editInputModel.TrainingsDescription,
-                    ContactUrl = editInputModel.ContactUrl,
-                    Town = town,
-                };
+                Id = editInputModel.Id,
+                Name = editInputModel.Name,
+                LogoUrl = editInputModel.LogoUrl,
+                CoverPhotoUrl = editInputModel.CoverPhotoUrl,
+                CoachName = editInputModel.CoachName,
+                TrainingsDescription = editInputModel.TrainingsDescription,
+                ContactUrl = editInputModel.ContactUrl,
+                Town = town,
+            };
 
-                this.database.Teams.Update(team);
-                await this.database.SaveChangesAsync();
-            }
+            this.database.Teams.Update(team);
+            await this.database.SaveChangesAsync();
 
             return team.Id;
         }
