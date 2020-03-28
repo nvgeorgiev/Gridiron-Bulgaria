@@ -9,5 +9,7 @@
     public interface IGamesService
     {
         Task<IEnumerable<GameViewModel>> GetAllGamesAsync();
+
+        Task<int> GameCreateAsync(CreateGameViewModel inputModel);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace GridironBulgaria.Web.Data
+﻿using Microsoft.EntityFrameworkCore;
+using GridironBulgaria.Web.ViewModels.Games;
+namespace GridironBulgaria.Web.Data
 {
     using GridironBulgaria.Web.Data.Configurations;
     using GridironBulgaria.Web.Models;
@@ -39,5 +41,8 @@
 
             modelBuilder.ApplyConfiguration(new PhotoAlbumConfiguration());
         }
+
+
+        public DbSet<GridironBulgaria.Web.ViewModels.Games.CreateGameViewModel> CreateGameViewModel { get; set; }
     }
 }
