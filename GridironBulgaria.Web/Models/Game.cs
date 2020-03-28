@@ -24,8 +24,16 @@
 
         public Team HomeTeam { get; set; }
 
+        public string HomeForeignTeamName { get; set; }
+
+        public string HomeForeignTeamLogoUrl { get; set; }
+
         public int? AwayTeamId { get; set; }
 
         public Team AwayTeam { get; set; }
+
+        public string AwayForeignTeamName { get; set; }
+
+        public string AwayForeignTeamLogoUrl { get; set; }
     }
 }

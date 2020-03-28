@@ -1,0 +1,83 @@
+﻿@model IEnumerable<GridironBulgaria.Web.ViewModels.Games.GameViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAndStartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StadiumLocationUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Format)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTeamScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AwayTeamScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTeamName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTeamLogoUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AwayTeamName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AwayTeamLogoUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAndStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StadiumLocationUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Format)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeTeamScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AwayTeamScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeTeamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeTeamLogoUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AwayTeamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AwayTeamLogoUrl)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

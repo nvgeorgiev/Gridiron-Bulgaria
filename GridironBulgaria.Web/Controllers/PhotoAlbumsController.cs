@@ -74,7 +74,7 @@
                 return this.NotFound();
             }
 
-            var teamId = await this.photoAlbumsService.EditPhotoAlbumAsync(editInput);
+            await this.photoAlbumsService.EditPhotoAlbumAsync(editInput);
 
             return this.Redirect("/PhotoAlbums");
         }
