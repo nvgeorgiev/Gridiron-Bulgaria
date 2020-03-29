@@ -15,7 +15,10 @@
 
         Task DeleteByIdAsync(int id);
 
-        Task<Game> GetGameByIdAsync(int id);
+        Task<EditGameViewModel> EditGameViewAsync(int id);
 
+        Task<int> EditGameAsync(EditGameViewModel editInputModel);
+
+        Task<Game> GetGameByIdAsync(int id);
     }
 }

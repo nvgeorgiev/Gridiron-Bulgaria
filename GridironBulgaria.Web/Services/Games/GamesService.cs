@@ -133,6 +133,39 @@
             await this.database.SaveChangesAsync();
         }
 
+        // HttpGet Edit Method
+        public async Task<EditGameViewModel> EditGameViewAsync(int id)
+        {
+            var gameToEdit = await GetGameByIdAsync(id);
+
+            var editGameInput = new EditGameViewModel
+            {
+                Id = gameToEdit.Id,
+                DateAndStartTime = gameToEdit.DateAndStartTime,
+                StadiumLocationUrl = gameToEdit.StadiumLocationUrl,
+                HomeTeamScore = gameToEdit.HomeTeamScore,
+                AwayTeamScore = gameToEdit.AwayTeamScore,
+            };
+
+            return editGameInput;
+        }
+
+        // HttpPost Edit Method
+        public async Task<int> EditGameAsync(EditGameViewModel editInputModel)
+        {
+            var game = await GetGameByIdAsync(editInputModel.Id);
+
+            game.DateAndStartTime = editInputModel.DateAndStartTime;
+            game.StadiumLocationUrl = editInputModel.StadiumLocationUrl;
+            game.HomeTeamScore = editInputModel.HomeTeamScore;
+            game.AwayTeamScore = editInputModel.AwayTeamScore;
+
+            this.database.Games.Update(game);
+            await this.database.SaveChangesAsync();
+
+            return game.Id;
+        }
+
         public async Task<Game> GetGameByIdAsync(int id)
            => await this.database.Games.FirstOrDefaultAsync(x => x.Id == id);
     }
