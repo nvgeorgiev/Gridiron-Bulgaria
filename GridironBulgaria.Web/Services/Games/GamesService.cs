@@ -124,5 +124,16 @@
 
             return game.Id;
         }
+
+        public async Task DeleteByIdAsync(int id)
+        {
+            var game = await GetGameByIdAsync(id);
+
+            this.database.Games.Remove(game);
+            await this.database.SaveChangesAsync();
+        }
+
+        public async Task<Game> GetGameByIdAsync(int id)
+           => await this.database.Games.FirstOrDefaultAsync(x => x.Id == id);
     }
 }

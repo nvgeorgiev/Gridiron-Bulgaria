@@ -41,5 +41,12 @@
 
             return this.Redirect("/Games");
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.gamesService.DeleteByIdAsync(id);
+
+            return this.Redirect("/Games");
+        }
     }
 }
