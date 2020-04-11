@@ -17,9 +17,9 @@
             this.photoAlbumsService = photoAlbumsService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string id)
         {
-            var allTeams = await this.photoAlbumsService.GetAllPhotoAlbumsAsync();
+            var allTeams = await this.photoAlbumsService.GetAllPhotoAlbumsAsync(id);
 
             return this.View(allTeams);
         }

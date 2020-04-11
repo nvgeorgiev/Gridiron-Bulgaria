@@ -4,6 +4,7 @@
     using GridironBulgaria.Web.Models;
     using GridironBulgaria.Web.ViewModels.PhotoAlbums;
     using Microsoft.EntityFrameworkCore;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -17,18 +18,25 @@
             this.database = database;
         }
 
-        public async Task<IEnumerable<PhotoAlbumViewModel>> GetAllPhotoAlbumsAsync()
+        public async Task<IEnumerable<PhotoAlbumViewModel>> GetAllPhotoAlbumsAsync(string id)
         {
-            var allPhotoAlbums = await this.database.PhotoAlbums.Select(x => new PhotoAlbumViewModel
+            var allPhotoAlbums = this.database.PhotoAlbums.Select(x => new PhotoAlbumViewModel
             {
                 Id = x.Id,
                 Title = x.Title,
                 ThumbnailPhotoUrl = x.ThumbnailPhotoUrl,
                 FacebookAlbumUrl = x.FacebookAlbumUrl,
                 EventDate = x.EventDate,
-            }).ToListAsync();
+            });
 
-            return allPhotoAlbums;
+            if (!String.IsNullOrEmpty(id))
+            {
+                allPhotoAlbums = allPhotoAlbums.Where(x =>
+                x.Title.Contains(id) ||
+                x.EventDate.Contains(id));
+            }
+
+            return await allPhotoAlbums.ToListAsync();
         }
 
         public async Task<int> PhotoAlbumCreateAsync(CreatePhotoAlbumViewModel inputModel)

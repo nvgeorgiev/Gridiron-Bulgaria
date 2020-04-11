@@ -1,13 +1,10 @@
 ﻿namespace GridironBulgaria.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using GridironBulgaria.Web.Services.Games;
     using GridironBulgaria.Web.ViewModels.Games;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
 
     public class GamesController : Controller
     {
@@ -18,9 +15,9 @@
             this.gamesService = gamesService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string id)
         {
-            var allGames = await this.gamesService.GetAllGamesAsync();
+            var allGames = await this.gamesService.GetAllGamesAsync(id);
 
             return this.View(allGames);
         }

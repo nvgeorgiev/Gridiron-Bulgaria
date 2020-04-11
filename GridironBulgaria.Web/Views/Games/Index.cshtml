@@ -6,6 +6,13 @@
 
 <h1>Index</h1>
 
+<form asp-controller="Games" asp-action="Index">
+    <p>
+        <input type="text" name="id">
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
 @if (User.IsInRole("Admin"))
 {
     <p>

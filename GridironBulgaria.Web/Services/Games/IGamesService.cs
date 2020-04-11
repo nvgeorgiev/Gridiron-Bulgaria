@@ -2,14 +2,12 @@
 {
     using GridironBulgaria.Web.Models;
     using GridironBulgaria.Web.ViewModels.Games;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     public interface IGamesService
     {
-        Task<IEnumerable<GameViewModel>> GetAllGamesAsync();
+        Task<IEnumerable<GameViewModel>> GetAllGamesAsync(string id);
 
         Task<int> GameCreateAsync(CreateGameViewModel inputModel);
 

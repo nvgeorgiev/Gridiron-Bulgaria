@@ -7,7 +7,7 @@
 
     public interface IPhotoAlbumsService
     {
-        Task<IEnumerable<PhotoAlbumViewModel>> GetAllPhotoAlbumsAsync();
+        Task<IEnumerable<PhotoAlbumViewModel>> GetAllPhotoAlbumsAsync(string id);
 
         Task<int> PhotoAlbumCreateAsync(CreatePhotoAlbumViewModel inputModel);
 
