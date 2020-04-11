@@ -83,7 +83,9 @@
         {
             var team = await this.GetTeamByIdAsync(id);
 
-            var teamPhotoAlbums = await this.database.PhotoAlbums.Where(gp => gp.HomeTeamId == team.Id || gp.AwayTeamId == team.Id).ToListAsync();
+            var teamPhotoAlbums = await this.database.PhotoAlbums.Where(pa => pa.HomeTeamId == team.Id || pa.AwayTeamId == team.Id).ToListAsync();
+
+            var gamesPlayed = await this.database.Games.Where(g => (g.HomeTeamId == team.Id || g.AwayTeamId == team.Id) && g.DateAndStartTime.Contains("КРАЙ")).ToListAsync();
 
             var teamDetails = new TeamDetailsViewModel
             {
@@ -94,7 +96,7 @@
                 CoachName = team.CoachName,
                 TrainingsDescription = team.TrainingsDescription,
                 ContactUrl = team.ContactUrl,
-                GamesPlayedCounter = teamPhotoAlbums.Count,
+                GamesPlayedCounter = gamesPlayed.Count,
                 TeamPhotoAlbums = teamPhotoAlbums,
             };
 
