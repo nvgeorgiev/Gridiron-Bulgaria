@@ -46,7 +46,7 @@
 </div>
 <h6>@Html.DisplayNameFor(model => model.TeamPhotoAlbums)</h6>
 <div>
-    @foreach (var item in Model.TeamPhotoAlbums)
+    @foreach (var item in Model.TeamPhotoAlbums.Reverse())
     {
     <div>
         <img src="@item.ThumbnailPhotoUrl" alt="" height="100" width="150">
