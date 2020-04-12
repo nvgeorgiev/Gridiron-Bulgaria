@@ -17,6 +17,7 @@
             this.teamsService = teamsService;
         }
 
+        [Route("/teams")]
         public async Task<IActionResult> Index()
         {
             var allTeams = await this.teamsService.GetAllTeamsAsync();
@@ -44,6 +45,7 @@
             return this.RedirectToAction(nameof(this.Details), new { id = teamId });
         }
 
+        [Route("/teams/{id}")]
         public async Task<IActionResult> Details(int id)
         {
             if (!this.ModelState.IsValid)

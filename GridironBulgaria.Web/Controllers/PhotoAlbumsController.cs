@@ -17,6 +17,7 @@
             this.photoAlbumsService = photoAlbumsService;
         }
 
+        [Route("gallery")]
         public async Task<IActionResult> Index(string id)
         {
             var allTeams = await this.photoAlbumsService.GetAllPhotoAlbumsAsync(id);

@@ -15,6 +15,7 @@
             this.gamesService = gamesService;
         }
 
+        [Route("games")]
         public async Task<IActionResult> Index(string id)
         {
             var allGames = await this.gamesService.GetAllGamesAsync(id);
