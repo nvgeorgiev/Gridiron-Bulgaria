@@ -17,7 +17,6 @@
             this.teamsService = teamsService;
         }
 
-        [Route("/teams")]
         public async Task<IActionResult> Index()
         {
             var allTeams = await this.teamsService.GetAllTeamsAsync();
@@ -40,20 +39,19 @@
                 return this.View(input);
             }
 
-            var teamId = await this.teamsService.CreateAsync(input);
+            var teamName = await this.teamsService.CreateAsync(input);
 
-            return this.RedirectToAction(nameof(this.Details), new { id = teamId });
+            return this.RedirectToAction(nameof(this.Details), new { name = teamName.ToLower().Replace(' ', '-') });
         }
 
-        [Route("/teams/{id}")]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(string name)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.NotFound();
             }
 
-            var teamDetails = await this.teamsService.TeamDetailsAsync(id);
+            var teamDetails = await this.teamsService.TeamDetailsAsync(name);
 
             return this.View(teamDetails);
         }
@@ -63,7 +61,7 @@
         {
             await this.teamsService.DeleteByIdAsync(id);
 
-            return this.Redirect("/Teams");
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         [Authorize(Policy = "RequireAdminRole")]
@@ -88,9 +86,9 @@
                 return this.NotFound();
             }
 
-            var teamId = await this.teamsService.EditTeamAsync(editInput);
+            var teamName = await this.teamsService.EditTeamAsync(editInput);
 
-            return this.RedirectToAction(nameof(this.Details), new { id = teamId });
+            return this.RedirectToAction(nameof(this.Details), new { name = teamName.ToLower().Replace(' ', '-') });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

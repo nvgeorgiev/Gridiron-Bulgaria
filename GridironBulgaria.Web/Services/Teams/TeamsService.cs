@@ -4,8 +4,11 @@
     using GridironBulgaria.Web.Models;
     using GridironBulgaria.Web.ViewModels.Teams;
     using Microsoft.EntityFrameworkCore;
+    using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
 
     public class TeamsService : ITeamsService
@@ -30,7 +33,7 @@
             return allTeams;
         }
 
-        public async Task<int> CreateAsync(CreateTeamInputModel inputModel)
+        public async Task<string> CreateAsync(CreateTeamInputModel inputModel)
         {
             var country = await this.database.Countries.FirstOrDefaultAsync(c => c.Name.ToLower() == inputModel.CountryName.ToLower());
 
@@ -76,12 +79,14 @@
                 await this.database.SaveChangesAsync();
             }
 
-            return team.Id;
+            return team.Name;
         }
 
-        public async Task<TeamDetailsViewModel> TeamDetailsAsync(int id)
+        public async Task<TeamDetailsViewModel> TeamDetailsAsync(string name)
         {
-            var team = await this.GetTeamByIdAsync(id);
+            var teamName = name.Replace('-', ' ');
+
+            var team = await this.database.Teams.Where(x => x.Name.ToLower() == teamName).FirstOrDefaultAsync();
 
             var teamPhotoAlbums = await this.database.PhotoAlbums.Where(pa => pa.HomeTeamId == team.Id || pa.AwayTeamId == team.Id).ToListAsync();
 
@@ -137,7 +142,7 @@
         }
 
         // HttpPost Edit Method
-        public async Task<int> EditTeamAsync(EditTeamViewModel editInputModel)
+        public async Task<string> EditTeamAsync(EditTeamViewModel editInputModel)
         {
             var country = await this.database.Countries.FirstOrDefaultAsync(c => c.Name.ToLower() == editInputModel.CountryName.ToLower());
 
@@ -179,7 +184,7 @@
             this.database.Teams.Update(team);
             await this.database.SaveChangesAsync();
 
-            return team.Id;
+            return team.Name;
         }
 
         public async Task<Team> GetTeamByIdAsync(int id)

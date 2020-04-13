@@ -13,33 +13,22 @@
     </p>
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LogoUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <img src="@item.LogoUrl" alt="" height="100" width="100">
-                    @item.Name
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit | </a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Сигурен ли си, че искаш да изтриеш отбора ?')"> Delete </a>
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 media ">
+            <img src="@item.LogoUrl" alt="@item.Name" height="100" width="100" class="mr-3">
+            <div class="media-body">
+                <h5 class="mt-0"><a href="@item.Url">@item.Name</a></h5>
+            </div>
+            <div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit | </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Сигурен ли си, че искаш да изтриеш отбора ?')"> Delete </a>
+                }
+            </div>
+        </div>       
+    }
+</div>

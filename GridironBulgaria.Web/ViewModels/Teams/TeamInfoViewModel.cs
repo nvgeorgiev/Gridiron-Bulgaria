@@ -9,5 +9,7 @@
         public string LogoUrl { get; set; }
 
         public string CountryName { get; set; }
+
+        public string Url => $"/teams/{this.Name.ToLower().Replace(' ', '-')}";
     }
 }

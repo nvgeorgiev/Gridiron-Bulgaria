@@ -9,9 +9,9 @@
     {
         Task<IEnumerable<TeamInfoViewModel>> GetAllTeamsAsync();
 
-        Task<int> CreateAsync(CreateTeamInputModel inputModel);
+        Task<string> CreateAsync(CreateTeamInputModel inputModel);
 
-        Task<TeamDetailsViewModel> TeamDetailsAsync(int id);
+        Task<TeamDetailsViewModel> TeamDetailsAsync(string name);
 
         Task DeleteByIdAsync(int id);
 
@@ -19,7 +19,7 @@
         Task<EditTeamViewModel> EditTeamViewAsync(int id);
 
         // HttpPost Edit Method
-        Task<int> EditTeamAsync(EditTeamViewModel editInputModel);
+        Task<string> EditTeamAsync(EditTeamViewModel editInputModel);
 
         Task<Team> GetTeamByIdAsync(int id);
     }

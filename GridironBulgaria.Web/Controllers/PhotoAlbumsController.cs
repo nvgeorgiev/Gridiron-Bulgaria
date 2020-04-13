@@ -42,7 +42,7 @@
 
             await this.photoAlbumsService.PhotoAlbumCreateAsync(input);
 
-            return this.Redirect("/PhotoAlbums");            
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         [Authorize(Policy = "RequireAdminRole")]
@@ -50,7 +50,7 @@
         {
             await this.photoAlbumsService.DeleteByIdAsync(id);
 
-            return this.Redirect("/PhotoAlbums");
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         [Authorize(Policy = "RequireAdminRole")]
@@ -77,7 +77,7 @@
 
             await this.photoAlbumsService.EditPhotoAlbumAsync(editInput);
 
-            return this.Redirect("/PhotoAlbums");
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

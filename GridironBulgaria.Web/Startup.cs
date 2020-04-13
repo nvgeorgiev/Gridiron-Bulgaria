@@ -17,6 +17,8 @@ namespace GridironBulgaria.Web
     using GridironBulgaria.Web.Services.Teams;
     using GridironBulgaria.Web.Services.PhotoAlbums;
     using GridironBulgaria.Web.Services.Games;
+    using Microsoft.AspNetCore.Routing;
+    using System.Text.RegularExpressions;
 
     public class Startup
     {
@@ -42,6 +44,11 @@ namespace GridironBulgaria.Web
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+            });
+
+            services.AddRouting(options =>
+            {
+                options.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer);
             });
 
             services.AddTransient<ITeamsService, TeamsService>();
@@ -74,8 +81,15 @@ namespace GridironBulgaria.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "teamDetails",
+                    pattern: "teams/{name:minlength(3)}",
+                    new { controller = "Teams", action = "Details" });
+
+                endpoints.MapControllerRoute(
+                      name: "default",
+                      pattern: "{controller:slugify}/{action:slugify}/{id:slugify?}",
+                      defaults: new { controller = "Home", action = "Index" });
+
                 endpoints.MapRazorPages();
             });
 
@@ -104,7 +118,7 @@ namespace GridironBulgaria.Web
             };
 
             var UserPassword = Configuration.GetSection("UserSettings")["UserPassword"];
-            
+
             //here we are assigning the Admin role to the User that we have registered above 
             //Now, we are assinging admin role to this user. When will we run this project then it will be assigned to that user.
             var user = await UserManager.FindByEmailAsync(Configuration.GetSection("UserSettings")["UserEmail"]);
@@ -120,6 +134,15 @@ namespace GridironBulgaria.Web
             else
             {
                 await UserManager.AddToRoleAsync(powerUser, "Admin");
+            }
+        }
+
+        public class SlugifyParameterTransformer : IOutboundParameterTransformer
+        {
+            public string TransformOutbound(object value)
+            {
+                // Slugify value
+                return value == null ? null : Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2").ToLower();
             }
         }
     }

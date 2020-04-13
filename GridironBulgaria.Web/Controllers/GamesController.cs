@@ -15,7 +15,6 @@
             this.gamesService = gamesService;
         }
 
-        [Route("games")]
         public async Task<IActionResult> Index(string id)
         {
             var allGames = await this.gamesService.GetAllGamesAsync(id);
@@ -40,7 +39,7 @@
 
             await this.gamesService.GameCreateAsync(input);
 
-            return this.Redirect("/Games");
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         [Authorize(Policy = "RequireAdminRole")]
@@ -48,7 +47,7 @@
         {
             await this.gamesService.DeleteByIdAsync(id);
 
-            return this.Redirect("/Games");
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         [Authorize(Policy = "RequireAdminRole")]
@@ -75,7 +74,7 @@
 
             await this.gamesService.EditGameAsync(editInput);
 
-            return this.Redirect("/Games");
+            return this.RedirectToAction(nameof(this.Index));
         }
     }
 }
