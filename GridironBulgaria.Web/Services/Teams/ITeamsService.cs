@@ -15,8 +15,10 @@
 
         Task DeleteByIdAsync(int id);
 
+        // HttpGet Edit Method
         Task<EditTeamViewModel> EditTeamViewAsync(int id);
 
+        // HttpPost Edit Method
         Task<int> EditTeamAsync(EditTeamViewModel editInputModel);
 
         Task<Team> GetTeamByIdAsync(int id);

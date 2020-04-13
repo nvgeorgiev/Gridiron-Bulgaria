@@ -13,8 +13,10 @@
 
         Task DeleteByIdAsync(int id);
 
+        // HttpGet Edit Method
         Task<EditGameViewModel> EditGameViewAsync(int id);
 
+        // HttpPost Edit Method
         Task<int> EditGameAsync(EditGameViewModel editInputModel);
 
         Task<Game> GetGameByIdAsync(int id);
