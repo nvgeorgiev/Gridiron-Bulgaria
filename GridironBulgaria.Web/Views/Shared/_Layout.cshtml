@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GridironBulgaria.Web</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/cssGalleryPage/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="apple-touch-icon" sizes="180x180" href="~/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="~/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon/favicon-16x16.png">    
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon/favicon-16x16.png">
+    <link rel="stylesheet" href="~/css/CustomStyleSheetGridironBG.css" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
+                <a class="logo" asp-area="" asp-controller="Home" asp-action="Index"><img class="logo" src="https://res.cloudinary.com/dd2kkj3w5/image/upload/v1586873192/GridironBulgaria/Gridiron-Bulgaria-Logo-SVG-PNG-JPEG/GridironBulgariaLogoPNG_poaxee.png"></a>
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GRIDIRON BULGARIA</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -23,13 +26,16 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="PhotoAlbums" asp-action="Index">Gallery</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="PhotoAlbums" asp-action="Index">Галерия</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Teams" asp-action="Index">Teams</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Teams" asp-action="Index">Отбори</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="Index">Games</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="Index">Мачове</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
                     </ul>
                 </div>
