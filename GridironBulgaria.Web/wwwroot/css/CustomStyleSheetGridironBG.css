@@ -208,3 +208,9 @@ a.nav-link {
 .d-block:hover {
     text-decoration-color: #545566;
 }
+
+.teamDetailsCoverPhoto {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
