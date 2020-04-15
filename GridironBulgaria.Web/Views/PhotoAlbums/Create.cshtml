@@ -4,10 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h3 class="font-weight-bold">Създаване на нов албум</h3>
 
-<h4>CreatePhotoAlbumsViewModel</h4>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -43,14 +43,14 @@
                 <span asp-validation-for="AwayTeamName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Готово" class="btn btn-primary" />
+                <input type="submit" value="ГОТОВО" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Обратно към Албумите</a>
+    <a asp-action="Index" class="btn btn-danger" role="button">ИЗХОД БЕЗ ЗАПАЗВАНЕ</a>
 </div>
 
 @section Scripts {

@@ -35,9 +35,11 @@ else
         @foreach (var item in Model.Reverse())
         {
             <div class="col-lg-3 col-md-4 col-6">
-                <a href="@item.FacebookAlbumUrl" class="d-block mb-4 h-100" target="_blank">
-                    <img class="img-fluid img-thumbnail" src="@item.ThumbnailPhotoUrl" alt="">
-                    <h6>@item.Title - @item.EventDate</h6>
+                <a href="@item.FacebookAlbumUrl" class="d-block mb-4" target="_blank">
+                    <div>
+                        <img class="img-thumbnail" src="@item.ThumbnailPhotoUrl" alt="@item.Title">
+                        <h6>@item.Title - @item.EventDate</h6>
+                    </div>
                 </a>
             </div>
             @if (User.IsInRole("Admin"))

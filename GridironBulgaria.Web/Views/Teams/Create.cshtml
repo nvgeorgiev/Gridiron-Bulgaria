@@ -4,10 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Въвеждане на нов отбор</h2>
+<h3 class="font-weight-bold">Създаване на нов отбор</h3>
 
-<h4></h4>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -53,13 +53,12 @@
                 <span asp-validation-for="TownName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Готово" class="btn btn-primary" />
+                <input type="submit" value="ГОТОВО" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Обратно към Отборите</a>
+    <a asp-action="Index" class="btn btn-danger" role="button">ИЗХОД БЕЗ ЗАПАЗВАНЕ</a>
 </div>
-
