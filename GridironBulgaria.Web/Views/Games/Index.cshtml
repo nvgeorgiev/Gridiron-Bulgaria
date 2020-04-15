@@ -16,13 +16,17 @@
     </div>
 </div>
 
-<hr class="mt-2 mb-5">
-
 @if (User.IsInRole("Admin"))
 {
+    <hr />
     <div>
-        <a asp-action="Create" class="btn btn-primary" role="button">СЪЗДАЙ МАЧ</a>
+        <a asp-action="Create" class="btn btn-primary">СЪЗДАЙ МАЧ</a>
     </div>
+    <hr />
+}
+else
+{
+    <hr class="mt-2 mb-5">
 }
 
 <!-- Page Content -->
@@ -50,8 +54,8 @@
             @if (User.IsInRole("Admin"))
             {
                 <div class="float-right">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Промени</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" onclick="return confirm('Сигурен ли си, че искаш да изтриеш мача ?')">Изтрий</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">ПРОМЕНИ</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('Сигурен ли си, че искаш да изтриеш мача ?')">ИЗТРИЙ</a>
                 </div>
             }
         </div>

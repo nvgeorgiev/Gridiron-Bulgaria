@@ -4,40 +4,49 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<form asp-controller="PhotoAlbums" asp-action="Index" method="get">
-    <p>
-        <input type="text" name="id">
-        <input type="submit" value="Search" />
-    </p>
-</form>
+<div class="row">
+    <h2 class="font-weight-bold text-lg-left mt-0 mb-0">Галерия</h2>
+    <div class="col">
+        <form asp-controller="PhotoAlbums" asp-action="Index" method="get">
+            <div>
+                <input type="submit" value="Търси" class="float-lg-right btn-group-sm">
+                <input type="text" name="id" class="float-lg-right form-control-sm">
+            </div>
+        </form>
+    </div>
+</div>
 
 @if (User.IsInRole("Admin"))
 {
-    <p>
-        <a asp-action="Create">Нов Албум</a>
-    </p>
+    <hr />
+    <div>
+        <a asp-action="Create" class="btn btn-primary">СЪЗДАЙ АЛБУМ</a>
+    </div>
+    <hr />
 }
-<table>
-    <tbody>
+else
+{
+    <hr class="mt-2 mb-5">
+}
+
+<!-- Page Content -->
+<div class="container-fluid">
+    <div class="row text-center text-lg-left">
         @foreach (var item in Model.Reverse())
         {
-            <tr>
-                <td>
-                    <img src="@item.ThumbnailPhotoUrl" alt="" height="200" width="300">
-                </td>
-                <td>
-                    <a href="@Html.DisplayFor(modelItem => item.FacebookAlbumUrl)" target="_blank">@item.Title - @item.EventDate</a>
-                </td>
-                <td>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit | </a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Сигурен ли си, че искаш да изтриеш албума ?')"> Delete </a>
-                    }
-                </td>
-            </tr>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="@item.FacebookAlbumUrl" class="d-block mb-4 h-100" target="_blank">
+                    <img class="img-fluid img-thumbnail" src="@item.ThumbnailPhotoUrl" alt="">
+                    <h6>@item.Title - @item.EventDate</h6>
+                </a>
+            </div>
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="float-right">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">ПРОМЕНИ</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('Сигурен ли си, че искаш да изтриеш мача ?')">ИЗТРИЙ</a>
+                </div>
+            }
         }
-    </tbody>
-</table>
+    </div>
+</div>
