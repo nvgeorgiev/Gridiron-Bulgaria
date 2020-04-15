@@ -4,93 +4,56 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="row">
+    <h2 class="font-weight-bold text-lg-left mt-0 mb-0">Мачове</h2>
+    <div class="col">
+        <form asp-controller="Games" asp-action="Index" method="get" type="text">
+            <div>
+                <input type="submit" value="Търси" class="float-lg-right btn-group-sm">
+                <input type="text" name="id" class="float-lg-right form-control-sm">
+            </div>
+        </form>
+    </div>
+</div>
 
-<form asp-controller="Games" asp-action="Index" method="get">
-    <p>
-        <input type="text" name="id">
-        <input type="submit" value="Search" />
-    </p>
-</form>
+<hr class="mt-2 mb-5">
 
 @if (User.IsInRole("Admin"))
 {
-    <p>
-        <a asp-action="Create">Нов Мач</a>
-    </p>
+    <div>
+        <a asp-action="Create" class="btn btn-primary" role="button">СЪЗДАЙ МАЧ</a>
+    </div>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DateAndStartTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StadiumLocationUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Format)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeTeamScore)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AwayTeamScore)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeTeamName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeTeamLogoUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AwayTeamName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AwayTeamLogoUrl)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Reverse())
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateAndStartTime)
-                </td>
-                <td>
-                    <a href="@item.StadiumLocationUrl" target="_blank">СТАДИОН</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Format)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HomeTeamScore)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AwayTeamScore)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HomeTeamName)
-                </td>
-                <td>
-                    <img src="@item.HomeTeamLogoUrl" alt="" height="100" width="100">
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AwayTeamName)
-                </td>
-                <td>
-                    <img src="@item.AwayTeamLogoUrl" alt="" height="100" width="100">
-                </td>
-                <td>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit | </a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Сигурен ли си, че искаш да изтриеш мача ?')"> Delete </a>
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+<!-- Page Content -->
+<div class="container-fluid">
+    @foreach (var item in Model.Reverse())
+    {
+        <div class="sc-fzXfLQ bZudva">
+            <div class="sc-fzXfLR bZCzZj">
+                <p class="sc-fzXfLS bZKWDs">@item.DateAndStartTime</p>
+                <div class="sc-fzXfLT bZTthB">
+                    <p class="sc-fzXfLS bZKWDs">@item.Format</p>
+                </div>
+            </div>
+            <div class="sc-AykKK iuNkgC team--home">
+                <img src="@item.HomeTeamLogoUrl" alt="https://res.cloudinary.com/dd2kkj3w5/image/upload/v1586873192/GridironBulgaria/Gridiron-Bulgaria-Logo-SVG-PNG-JPEG/GridironBulgariaLogoPNG_poaxee.png" class="sc-bkzDXQ glNWhb">
+                <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
+                <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
+            </div>
+            <div class="sc-AykKK iuNkgC team--away">
+                <img src="@item.AwayTeamLogoUrl" alt="https://res.cloudinary.com/dd2kkj3w5/image/upload/v1586873192/GridironBulgaria/Gridiron-Bulgaria-Logo-SVG-PNG-JPEG/GridironBulgariaLogoPNG_poaxee.png" class="sc-bkzDXQ glNWhb">
+                <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
+                <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
+            </div>
+            <a href="@item.StadiumLocationUrl" class="sc-AykKC sc-AykKE sc-AykKH iunUub" target="_blank">Стадион</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="float-right">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Промени</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" onclick="return confirm('Сигурен ли си, че искаш да изтриеш мача ?')">Изтрий</a>
+                </div>
+            }
+        </div>
+    }
+</div>
