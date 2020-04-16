@@ -1,5 +1,7 @@
-﻿* {
-    font-family: "Open-Sans", Arial, sans-serif;
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif !important;
     font-style: normal;
     font-weight: 400;
     color: #545566;
@@ -197,12 +199,19 @@ a.nav-link {
     font-size: x-large !important;
 }
 
+.h4, h4 {
+    text-align: center !important;
+    color: #545566 !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+}
+
 .h6, h6 {
     font-size: medium !important;
     text-align: center !important;
     color: #545566 !important;
     text-decoration: none !important;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
 }
 
 .form-wrapper {
@@ -227,7 +236,16 @@ h2 {
     text-decoration: none !important;
 }
 
-div#teamIndexHover:hover h5 {
+div#teamIndexHover:hover h4 {
+    background-color: #F9F9F7 !important;
+    color: #D95462 !important;
+}
+
+.d-block:hover {
+    text-decoration: none !important;
+}
+
+div#albumIndexHover:hover h6 {
     background-color: #F9F9F7 !important;
     color: #D95462 !important;
 }
