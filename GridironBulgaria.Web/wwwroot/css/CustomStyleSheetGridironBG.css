@@ -148,7 +148,7 @@ a.nav-link {
 
 .glNWhb {
     width: 4.8rem;
-    height: 2.8rem;
+    height: 3.8rem;
     object-fit: contain;
     margin: 0px 1.2rem 0px 0px;
 }
@@ -206,13 +206,7 @@ a.nav-link {
 }
 
 .d-block:hover {
-    text-decoration-color: #545566;
-}
-
-.teamDetailsCoverPhoto {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
+    text-decoration: none;
 }
 
 .form-wrapper {
@@ -225,4 +219,10 @@ a.nav-link {
 
 h2 {
     margin-left: 15px !important;
+}
+
+.teamDetailsCoverPhoto {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
 }
