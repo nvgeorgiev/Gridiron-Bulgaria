@@ -54,7 +54,7 @@ else
             }
             else if (@item.HomeTeamCountry != null && @item.AwayTeamCountry == null)
             {
-                <a id="teamGamesLink" href="@item.HomeTeamUrl">
+                <a class="teamGamesLinkHover" href="@item.HomeTeamUrl">
                     <div class="sc-AykKK iuNkgC team--home">
                         <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
                         <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
@@ -74,7 +74,7 @@ else
                     <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
                     <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
                 </div>
-                <a id="teamGamesLink" href="@item.AwayTeamUrl">
+                <a class="teamGamesLinkHover" href="@item.AwayTeamUrl">
                     <div class="sc-AykKK iuNkgC team--away">
                         <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
                         <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
@@ -84,14 +84,14 @@ else
             }
             else
             {
-                <a id="teamGamesLink" href="@item.HomeTeamUrl">
+                <a class="teamGamesLinkHover" href="@item.HomeTeamUrl">
                     <div class="sc-AykKK iuNkgC team--home">
                         <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
                         <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
                         <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
                     </div>
                 </a>
-                <a id="teamGamesLink" href="@item.AwayTeamUrl">
+                <a class="teamGamesLinkHover" href="@item.AwayTeamUrl">
                     <div class="sc-AykKK iuNkgC team--away">
                         <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
                         <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>

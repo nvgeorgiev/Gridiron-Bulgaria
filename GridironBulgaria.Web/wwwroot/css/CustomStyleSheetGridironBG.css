@@ -232,10 +232,10 @@ div#teamIndexHover:hover h5 {
     color: #D95462 !important;
 }
 
-a#teamGamesLink:hover {
+.teamGamesLinkHover:hover {
     text-decoration: none !important;
 }
 
-a#teamGamesLink:hover p {
-    color: #D95462 !important;
-}
+    .teamGamesLinkHover:hover p {
+        color: #D95462 !important;
+    }
