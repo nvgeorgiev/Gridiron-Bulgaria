@@ -30,8 +30,10 @@
                 AwayTeamScore = x.AwayTeamScore,
                 HomeTeamName = x.HomeTeam.Name ?? x.HomeForeignTeamName,
                 HomeTeamLogoUrl = x.HomeTeam.LogoUrl ?? x.HomeForeignTeamLogoUrl,
+                HomeTeamCountry = x.HomeTeam.Town.Country.Name,
                 AwayTeamName = x.AwayTeam.Name ?? x.AwayForeignTeamName,
                 AwayTeamLogoUrl = x.AwayTeam.LogoUrl ?? x.AwayForeignTeamLogoUrl,
+                AwayTeamCountry = x.AwayTeam.Town.Country.Name,
             });
 
             if (!String.IsNullOrEmpty(id))

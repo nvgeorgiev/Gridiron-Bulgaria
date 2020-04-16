@@ -16,10 +16,18 @@
 
         public string HomeTeamName { get; set; }
 
+        public string HomeTeamUrl => $"/teams/{this.HomeTeamName.ToLower().Replace(' ', '-')}";
+
         public string HomeTeamLogoUrl { get; set; }
+
+        public string HomeTeamCountry { get; set; }
 
         public string AwayTeamName { get; set; }
 
+        public string AwayTeamUrl => $"/teams/{this.AwayTeamName.ToLower().Replace(' ', '-')}";
+
         public string AwayTeamLogoUrl { get; set; }
+
+        public string AwayTeamCountry { get; set; }
     }
 }

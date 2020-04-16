@@ -39,17 +39,69 @@ else
                     <p class="sc-fzXfLS bZKWDs">@item.Format</p>
                 </div>
             </div>
-            <div class="sc-AykKK iuNkgC team--home">
-                <img src="@item.HomeTeamLogoUrl" alt="https://res.cloudinary.com/dd2kkj3w5/image/upload/v1586873192/GridironBulgaria/Gridiron-Bulgaria-Logo-SVG-PNG-JPEG/GridironBulgariaLogoPNG_poaxee.png" class="sc-bkzDXQ glNWhb">
-                <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
-                <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
-            </div>
-            <div class="sc-AykKK iuNkgC team--away">
-                <img src="@item.AwayTeamLogoUrl" alt="https://res.cloudinary.com/dd2kkj3w5/image/upload/v1586873192/GridironBulgaria/Gridiron-Bulgaria-Logo-SVG-PNG-JPEG/GridironBulgariaLogoPNG_poaxee.png" class="sc-bkzDXQ glNWhb">
-                <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
-                <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
-            </div>
+            @if (@item.HomeTeamCountry == null && @item.AwayTeamCountry == null)
+            {
+                <div class="sc-AykKK iuNkgC team--home">
+                    <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
+                    <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
+                    <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
+                </div>
+                <div class="sc-AykKK iuNkgC team--away">
+                    <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
+                    <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
+                    <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
+                </div>
+            }
+            else if (@item.HomeTeamCountry != null && @item.AwayTeamCountry == null)
+            {
+                <a id="teamGamesLink" href="@item.HomeTeamUrl">
+                    <div class="sc-AykKK iuNkgC team--home">
+                        <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
+                        <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
+                        <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
+                    </div>
+                </a>
+                <div class="sc-AykKK iuNkgC team--away">
+                    <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
+                    <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
+                    <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
+                </div>
+            }
+            else if (@item.HomeTeamCountry == null && @item.AwayTeamCountry != null)
+            {
+                <div class="sc-AykKK iuNkgC team--home">
+                    <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
+                    <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
+                    <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
+                </div>
+                <a id="teamGamesLink" href="@item.AwayTeamUrl">
+                    <div class="sc-AykKK iuNkgC team--away">
+                        <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
+                        <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
+                        <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
+                    </div>
+                </a>
+            }
+            else
+            {
+                <a id="teamGamesLink" href="@item.HomeTeamUrl">
+                    <div class="sc-AykKK iuNkgC team--home">
+                        <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
+                        <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
+                        <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
+                    </div>
+                </a>
+                <a id="teamGamesLink" href="@item.AwayTeamUrl">
+                    <div class="sc-AykKK iuNkgC team--away">
+                        <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
+                        <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
+                        <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
+                    </div>
+                </a>
+            }
+
             <a href="@item.StadiumLocationUrl" class="sc-AykKC sc-AykKE sc-AykKH iunUub" target="_blank">Стадион</a>
+
             @if (User.IsInRole("Admin"))
             {
                 <div class="float-right">

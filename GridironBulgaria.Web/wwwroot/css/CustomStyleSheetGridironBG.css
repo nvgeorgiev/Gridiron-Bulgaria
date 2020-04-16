@@ -231,3 +231,11 @@ div#teamIndexHover:hover h5 {
     background-color: #F9F9F7 !important;
     color: #D95462 !important;
 }
+
+a#teamGamesLink:hover {
+    text-decoration: none !important;
+}
+
+a#teamGamesLink:hover p {
+    color: #D95462 !important;
+}
