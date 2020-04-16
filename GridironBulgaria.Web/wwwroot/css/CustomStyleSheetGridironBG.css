@@ -205,10 +205,6 @@ a.nav-link {
     font-weight: 700 !important;
 }
 
-.d-block:hover {
-    text-decoration: none;
-}
-
 .form-wrapper {
     width: 271px;
     padding: 0px;
@@ -225,4 +221,13 @@ h2 {
     width: 100%;
     max-width: 400px;
     height: auto;
+}
+
+.d-block:hover {
+    text-decoration: none !important;
+}
+
+div#teamIndexHover:hover h5 {
+    background-color: #F9F9F7 !important;
+    color: #D95462 !important;
 }
