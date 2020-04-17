@@ -274,10 +274,28 @@ main section:nth-child(1) {
             color: #D95462;
         }
 
-footer article:nth-child(1){
-    float:left;    
+.h2, h2 {
+    padding-left: 15px !important;
+}
+
+footer article:nth-child(1) {
+    float: left;
+    padding-left: 15px;
 }
 
 footer article:nth-child(2) {
     text-align: right;
+    padding-right: 15px;
+}
+
+a#githubIcon {
+    color: #545566 !important;
+}
+
+a#githubIcon:hover {
+    color: #D95462 !important;
+}
+
+a#facebookIcon {
+    font-size: 1.8125em !important;
 }
