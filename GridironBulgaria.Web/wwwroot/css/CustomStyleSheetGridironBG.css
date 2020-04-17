@@ -261,7 +261,7 @@ main section:nth-child(1) {
         }
 
 .h2, h2 {
-    padding-left: 0.9375em !important;
+    padding-left: 15px !important;
 }
 
 footer article:nth-child(1) {
@@ -274,11 +274,6 @@ footer article:nth-child(2) {
     padding-right: 0.9375em;
 }
 
-svg#githubIcon {
-    color: #545566 !important;
-    font-size: 1.25em !important;
-}
-
 .githubLink {
     font-size: 0.8125em !important;
     color: #545566 !important;
@@ -288,7 +283,12 @@ svg#githubIcon {
     color: #D95462 !important;
 }
 
+svg#githubIcon {
+    color: #545566 !important;
+    font-size: 1.25em !important;
+}
+
 svg#facebookIcon {
     font-size: 3.125em !important;
-    padding-left: 0.3125em;
+    padding-left: 5px !important;
 }
