@@ -25,17 +25,17 @@ body {
 .navbar-brand {
     color: #F9F9F7 !important;
     float: left !important;
-    height: 50px !important;
-    padding: 15px 10px !important;
-    font-size: 23px !important;
+    height: 3.125em !important;
+    padding: 0.9375em 0.625em !important;
+    font-size: 1.4375em !important;
     font-weight: 900 !important;
-    line-height: 20px !important;
-    border-bottom: 3px solid transparent;
+    line-height: 1.25em !important;
+    border-bottom: 0.1875em solid transparent;
 }
 
 a.nav-link {
     color: #F9F9F7 !important;
-    font-size: 19px !important;
+    font-size: 1.1875em !important;
     font-weight: 500 !important;
 }
 
@@ -52,17 +52,17 @@ a.nav-link {
 .logo {
     display: inline-block;
     vertical-align: middle;
-    width: 60px;
-    height: 60px;
-    margin-right: 0px;
-    margin-top: 2px;
-    margin-bottom: 6px;
+    width: 3.75em;
+    height: 3.75em;
+    margin-right: 0em;
+    margin-top: 0.125em;
+    margin-bottom: 0.375em;
 }
 
 .bZudva {
     min-height: 18rem;
     background-color: rgb(245, 245, 245);
-    margin: 1.6rem 0px 0px;
+    margin: 1.6rem 0em 0em;
     font: 300 1.5rem / 2.4rem 'Montserrat', sans-serif;
     font-style: normal;
     text-transform: uppercase;
@@ -71,8 +71,8 @@ a.nav-link {
 
 .bZudva {
     width: calc(30% - -22rem);
-    margin-top: 40px;
-    margin-bottom: 60px;
+    margin-top: 2.5em;
+    margin-bottom: 3.75em;
     margin-left: auto;
     margin-right: auto
 }
@@ -86,13 +86,13 @@ a.nav-link {
     -webkit-box-align: center;
     align-items: center;
     background-color: #545566;
-    padding: 0px 1rem;
+    padding: 0em 1rem;
 }
 
 .bZKWDs {
     color: #F9F9F7;
     text-transform: uppercase;
-    padding: 1rem 0px 0.8rem;
+    padding: 1rem 0em 0.8rem;
     font: 400 1.2rem / 1.2rem 'Montserrat', sans-serif;
     font-style: normal;
     text-transform: uppercase;
@@ -112,14 +112,14 @@ a.nav-link {
     align-items: center;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding: 1.5rem 1rem 0px;
+    padding: 1.5rem 1rem 0em;
 }
 
 .djJIEm {
     width: 4.8rem;
     height: 2.8rem;
     object-fit: contain;
-    margin: 0px 1.2rem 0px 0px;
+    margin: 0em 1.2rem 0em 0em;
 }
 
 .bZdkmI {
@@ -129,8 +129,8 @@ a.nav-link {
     text-overflow: ellipsis;
     white-space: nowrap;
     flex: 1 1 0%;
-    padding: 0.4rem 1px 1px;
-    margin: 1px 1rem 4px -13px;
+    padding: 0.4rem 0.0625em 0.0625em;
+    margin: 0.0625em 1rem 0.25em -0.8125em;
     font: 300 1.5rem / 2.4rem 'Montserrat', sans-serif;
     font-style: normal;
     text-transform: uppercase;
@@ -152,7 +152,7 @@ a.nav-link {
     width: 4.8rem;
     height: 3.8rem;
     object-fit: contain;
-    margin: 0px 1.2rem 0px 0px;
+    margin: 0em 1.2rem 0em 0em;
 }
 
 .iunUub {
@@ -167,7 +167,7 @@ a.nav-link {
     text-transform: uppercase;
     text-overflow: ellipsis;
     color: #F9F9F7;
-    letter-spacing: 0.15px;
+    letter-spacing: 0.009375em;
     -webkit-appearance: none;
     width: calc(50% - 3rem);
     height: 2.5rem;
@@ -180,7 +180,7 @@ a.nav-link {
     border-radius: 1.2rem;
     font: 500 1rem / 1rem 'Montserrat', sans-serif;
     margin: 2rem auto 0.9rem;
-    padding: 0.8rem 0px 1rem;
+    padding: 0.8rem 0em 1rem;
     font-style: normal;
     text-transform: uppercase;
     transition: all .4s ease;
@@ -215,21 +215,11 @@ a.nav-link {
 }
 
 .form-wrapper {
-    width: 271px;
-    padding: 0px;
-    margin: -30px auto 0px auto;
-    border-radius: 1px;
+    width: 16.9375em;
+    padding: 0em;
+    margin: -1.875em auto 0em auto;
+    border-radius: 0.0625em;
     float: right;
-}
-
-.teamDetailsCoverPhoto {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-}
-
-.d-block:hover {
-    text-decoration: none !important;
 }
 
 div#teamIndexHover:hover h4 {
@@ -254,10 +244,6 @@ div#albumIndexHover:hover h6 {
         color: #D95462 !important;
     }
 
-.text-danger {
-    color: red !important;
-}
-
 main section:nth-child(1) {
     background: url(https://res.cloudinary.com/dd2kkj3w5/image/upload/v1587057121/GridironBulgaria/Home-Page-BackgroundPhoto/GridironBulgariaHomeBackground-2_ojci4t.jpg);
     padding: 10rem;
@@ -275,17 +261,17 @@ main section:nth-child(1) {
         }
 
 .h2, h2 {
-    padding-left: 15px !important;
+    padding-left: 0.9375em !important;
 }
 
 footer article:nth-child(1) {
     float: left;
-    padding-left: 15px;
+    padding-left: 0.9375em;
 }
 
 footer article:nth-child(2) {
     text-align: right;
-    padding-right: 15px;
+    padding-right: 0.9375em;
 }
 
 a#githubIcon {
