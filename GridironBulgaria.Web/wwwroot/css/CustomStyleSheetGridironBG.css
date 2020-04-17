@@ -199,7 +199,7 @@ a.nav-link {
     font-size: x-large !important;
 }
 
-.h4, h4 {
+.h3, h3 {
     text-align: center !important;
     color: #545566 !important;
     text-decoration: none !important;
@@ -222,7 +222,7 @@ a.nav-link {
     float: right;
 }
 
-div#teamIndexHover:hover h4 {
+div#teamIndexHover:hover h3 {
     background-color: #F9F9F7 !important;
     color: #D95462 !important;
 }
