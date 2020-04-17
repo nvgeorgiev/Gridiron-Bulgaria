@@ -15,7 +15,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding-left: 0em; padding-right: 0em;">
                 <a class="logo" asp-area="" asp-controller="Home" asp-action="Index"><img class="logo" src="https://res.cloudinary.com/dd2kkj3w5/image/upload/v1586873192/GridironBulgaria/Gridiron-Bulgaria-Logo-SVG-PNG-JPEG/GridironBulgariaLogoSVG_harqdz.svg"></a>
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GRIDIRON BULGARIA</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -25,7 +25,6 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav nav-pills flex-grow-1 flex-sm-row-reverse">
                         <li class="nav-item">
-                            <a id="facebookIcon" href="https://www.facebook.com/gridironbulgaria/" class="nav-link fab fa-facebook-square" target="_blank"></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="PhotoAlbums" asp-action="Index">Галерия</a>
@@ -40,6 +39,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
                     </ul>
+                    <div>
+                        <a href="https://www.facebook.com/gridironbulgaria/" class="facebookLink" target="_blank"><i id="facebookIcon" class="fab fa-facebook-square hover-effect"></i></a>
+                    </div>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -56,7 +58,7 @@
                 Copyright &copy; @DateTime.Now.Year | Всички права запазени | Gridiron Bulgaria
             </article>
             <article>
-                <a id="githubIcon" href="https://github.com/nvgeorgiev/Gridiron-Bulgaria" class="fab fa-github fa-m" target="_blank"> Open Source System</a>
+                <a class="githubLink" href="https://github.com/nvgeorgiev/Gridiron-Bulgaria" target="_blank"><i id="githubIcon" class="fab fa-github"></i> Open Source System</a>
             </article>
         </div>
     </footer>

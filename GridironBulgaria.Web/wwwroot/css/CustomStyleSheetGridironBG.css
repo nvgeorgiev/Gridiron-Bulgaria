@@ -274,14 +274,21 @@ footer article:nth-child(2) {
     padding-right: 0.9375em;
 }
 
-a#githubIcon {
+svg#githubIcon {
+    color: #545566 !important;
+    font-size: 1.25em !important;
+}
+
+.githubLink {
+    font-size: 0.8125em !important;
     color: #545566 !important;
 }
 
-a#githubIcon:hover {
+.githubLink:hover {
     color: #D95462 !important;
 }
 
-a#facebookIcon {
-    font-size: 1.8125em !important;
+svg#facebookIcon {
+    font-size: 3.125em !important;
+    padding-left: 0.3125em;
 }
