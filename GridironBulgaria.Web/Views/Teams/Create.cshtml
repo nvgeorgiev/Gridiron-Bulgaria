@@ -4,61 +4,63 @@
     ViewData["Title"] = "Create";
 }
 
-<h3 class="font-weight-bold">Създаване на нов отбор</h3>
+<div class="container">
+    <h3 class="font-weight-bold">Създаване на нов отбор</h3>
 
-<hr />
+    <hr />
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LogoUrl" class="control-label"></label>
-                <input asp-for="LogoUrl" class="form-control" />
-                <span asp-validation-for="LogoUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CoverPhotoUrl" class="control-label"></label>
-                <input asp-for="CoverPhotoUrl" class="form-control" />
-                <span asp-validation-for="CoverPhotoUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CoachName" class="control-label"></label>
-                <input asp-for="CoachName" class="form-control" />
-                <span asp-validation-for="CoachName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TrainingsDescription" class="control-label"></label>
-                <input asp-for="TrainingsDescription" class="form-control" />
-                <span asp-validation-for="TrainingsDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContactUrl" class="control-label"></label>
-                <input asp-for="ContactUrl" class="form-control" />
-                <span asp-validation-for="ContactUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CountryName" class="control-label"></label>
-                <input asp-for="CountryName" class="form-control" />
-                <span asp-validation-for="CountryName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TownName" class="control-label"></label>
-                <input asp-for="TownName" class="form-control" />
-                <span asp-validation-for="TownName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="ГОТОВО" class="btn btn-success" />
-            </div>
-        </form>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LogoUrl" class="control-label"></label>
+                    <input asp-for="LogoUrl" class="form-control" />
+                    <span asp-validation-for="LogoUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CoverPhotoUrl" class="control-label"></label>
+                    <input asp-for="CoverPhotoUrl" class="form-control" />
+                    <span asp-validation-for="CoverPhotoUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CoachName" class="control-label"></label>
+                    <input asp-for="CoachName" class="form-control" />
+                    <span asp-validation-for="CoachName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TrainingsDescription" class="control-label"></label>
+                    <input asp-for="TrainingsDescription" class="form-control" />
+                    <span asp-validation-for="TrainingsDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ContactUrl" class="control-label"></label>
+                    <input asp-for="ContactUrl" class="form-control" />
+                    <span asp-validation-for="ContactUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CountryName" class="control-label"></label>
+                    <input asp-for="CountryName" class="form-control" />
+                    <span asp-validation-for="CountryName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TownName" class="control-label"></label>
+                    <input asp-for="TownName" class="form-control" />
+                    <span asp-validation-for="TownName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="ГОТОВО" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index" class="btn btn-danger" role="button">ОБРАТНО</a>
+    <div>
+        <a asp-action="Index" class="btn btn-danger" role="button">ОБРАТНО</a>
+    </div>
 </div>

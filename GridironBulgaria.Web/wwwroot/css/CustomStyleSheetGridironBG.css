@@ -1,7 +1,7 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 * {
-    font-family: 'Montserrat', sans-serif !important;
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 400;
     color: #545566;
@@ -63,7 +63,7 @@ a.nav-link {
     min-height: 18rem;
     background-color: rgb(245, 245, 245);
     margin: 1.6rem 0px 0px;
-    font: 300 1.5rem / 2.4rem "Open-Sans", Arial, sans-serif;
+    font: 300 1.5rem / 2.4rem 'Montserrat', sans-serif;
     font-style: normal;
     text-transform: uppercase;
     text-decoration: none;
@@ -93,7 +93,7 @@ a.nav-link {
     color: #F9F9F7;
     text-transform: uppercase;
     padding: 1rem 0px 0.8rem;
-    font: 400 1.2rem / 1.2rem "Open-Sans", Arial, sans-serif;
+    font: 400 1.2rem / 1.2rem 'Montserrat', sans-serif;
     font-style: normal;
     text-transform: uppercase;
     text-decoration: none;
@@ -131,7 +131,7 @@ a.nav-link {
     flex: 1 1 0%;
     padding: 0.4rem 1px 1px;
     margin: 1px 1rem 4px -13px;
-    font: 300 1.5rem / 2.4rem "Open-Sans", Arial, sans-serif;
+    font: 300 1.5rem / 2.4rem 'Montserrat', sans-serif;
     font-style: normal;
     text-transform: uppercase;
     text-decoration: none;
@@ -142,7 +142,7 @@ a.nav-link {
     color: #545566;
     text-align: right;
     margin: auto;
-    font: 500 1.5rem / 1.14rem "Open-Sans", Arial, sans-serif;
+    font: 500 1.5rem / 1.14rem 'Montserrat', sans-serif;
     font-style: normal;
     text-transform: uppercase;
     text-decoration: none;
@@ -178,7 +178,7 @@ a.nav-link {
     border-color: initial;
     border-image: initial;
     border-radius: 1.2rem;
-    font: 500 1rem / 1rem "Open-Sans", Arial, sans-serif;
+    font: 500 1rem / 1rem 'Montserrat', sans-serif;
     margin: 2rem auto 0.9rem;
     padding: 0.8rem 0px 1rem;
     font-style: normal;
@@ -222,10 +222,6 @@ a.nav-link {
     float: right;
 }
 
-h2 {
-    margin-left: 15px !important;
-}
-
 .teamDetailsCoverPhoto {
     width: 100%;
     max-width: 400px;
@@ -257,3 +253,31 @@ div#albumIndexHover:hover h6 {
     .teamGamesLinkHover:hover p {
         color: #D95462 !important;
     }
+
+.text-danger {
+    color: red !important;
+}
+
+main section:nth-child(1) {
+    background: url(https://res.cloudinary.com/dd2kkj3w5/image/upload/v1587057121/GridironBulgaria/Home-Page-BackgroundPhoto/GridironBulgariaHomeBackground-2_ojci4t.jpg);
+    padding: 10rem;
+}
+
+    main section:nth-child(1) h1 {
+        color: #F9F9F7;
+        font: 900 3.5rem / 5.14rem 'Montserrat', sans-serif;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+        main section:nth-child(1) h1 span {
+            color: #D95462;
+        }
+
+footer article:nth-child(1){
+    float:left;    
+}
+
+footer article:nth-child(2) {
+    text-align: right;
+}

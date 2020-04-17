@@ -2,6 +2,10 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/GridironBulgaria.Web",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:59815",
       "sslPort": 44379

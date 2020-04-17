@@ -4,43 +4,44 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="row">
-    <h2 class="font-weight-bold text-lg-left mt-0 mb-0">Отбори</h2>
-</div>
-
-@if (User.IsInRole("Admin"))
-{
-    <hr />
-    <div>
-        <a asp-action="Create" class="btn btn-primary">СЪЗДАЙ ОТБОР</a>
+<div class="container-fluid">
+    <div class="row">
+        <h2 class="font-weight-bold text-lg-left mt-0 mb-0">Отбори</h2>
     </div>
-    <hr />
-}
-else
-{
-    <hr class="mt-2 mb-5">
-}
 
+    @if (User.IsInRole("Admin"))
+    {
+        <hr />
+        <div>
+            <a asp-action="Create" class="btn btn-primary">СЪЗДАЙ ОТБОР</a>
+        </div>
+        <hr />
+    }
+    else
+    {
+        <hr class="mt-2 mb-5">
+    }
 
-<div class="container-fluid text-break">
-    <div class="row text-center">
-        @foreach (var item in Model)
-        {
-            <div id="teamIndexHover" class="col-lg-3 col-md-4 col-6">
-                <a  href="@item.Url" class="d-block mb-4 h-100">
-                    <div>
-                        <img class="img" src="@item.LogoUrl" alt="@item.Name" height="150">
-                        <h4>@item.Name</h4>
-                    </div>
-                </a>
-            </div>
-            @if (User.IsInRole("Admin"))
+    <div class="container text-break">
+        <div class="row text-center">
+            @foreach (var item in Model)
             {
-                <div class="float-right">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">ПРОМЕНИ</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('Сигурен ли си, че искаш да изтриеш мача ?')">ИЗТРИЙ</a>
+                <div id="teamIndexHover" class="col-lg-3 col-md-4 col-6">
+                    <a href="@item.Url" class="d-block mb-4">
+                        <div>
+                            <img class="img" src="@item.LogoUrl" alt="@item.Name" height="150">
+                            <h4>@item.Name</h4>
+                        </div>
+                    </a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <h6>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">ПРОМЕНИ</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('Сигурен ли си, че искаш да изтриеш мача ?')">ИЗТРИЙ</a>
+                        </h6>
+                    }
                 </div>
             }
-        }
+        </div>
     </div>
 </div>

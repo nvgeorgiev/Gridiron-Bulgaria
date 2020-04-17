@@ -15,16 +15,15 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="logo" asp-area="" asp-controller="Home" asp-action="Index"><img class="logo" src="https://res.cloudinary.com/dd2kkj3w5/image/upload/v1586873192/GridironBulgaria/Gridiron-Bulgaria-Logo-SVG-PNG-JPEG/GridironBulgariaLogoPNG_poaxee.png"></a>
+            <div class="container-fluid">
+                <a class="logo" asp-area="" asp-controller="Home" asp-action="Index"><img class="logo" src="https://res.cloudinary.com/dd2kkj3w5/image/upload/v1586873192/GridironBulgaria/Gridiron-Bulgaria-Logo-SVG-PNG-JPEG/GridironBulgariaLogoSVG_harqdz.svg"></a>
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GRIDIRON BULGARIA</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex">
+                    <ul class="navbar-nav nav-pills flex-grow-1 flex-sm-row-reverse">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="PhotoAlbums" asp-action="Index">Галерия</a>
                         </li>
@@ -38,23 +37,30 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
                     </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
     <footer class="border-top footer text-muted">
-        <div class="container">
-            Copyright &copy; @DateTime.Now.Year | Всички права запазени | Gridiron Bulgaria
+        <div class="container-fluid">
+            <article>
+                Copyright &copy; @DateTime.Now.Year | Всички права запазени | Gridiron Bulgaria
+            </article>
+            <article>
+                <i class="fab fa-github "></i>
+            </article>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/c81a87e6ff.js" crossorigin="anonymous"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
