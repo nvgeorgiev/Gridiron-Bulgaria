@@ -5,112 +5,114 @@
 }
 
 <div class="container-fluid">
-    <div class="row">
-        <h2 class="font-weight-bold text-lg-left mt-0 mb-0">Мачове</h2>
-        <div class="col">
-            <form asp-controller="Games" asp-action="Index" method="get" type="text">
-                <div>
-                    <input type="submit" value="Търси" class="float-lg-right btn-group-sm">
-                    <input type="text" name="id" class="float-lg-right form-control-sm">
-                </div>
-            </form>
-        </div>
-    </div>
-
-    @if (User.IsInRole("Admin"))
-    {
-        <hr />
-        <div>
-            <a asp-action="Create" class="btn btn-primary">НОВ МАЧ</a>
-        </div>
-        <hr />
-    }
-    else
-    {
-        <hr class="mt-2 mb-5">
-    }
-
-    <div class="container text-break">
-        @foreach (var item in Model.Reverse())
-        {
-            <div class="sc-fzXfLQ bZudva">
-                <div class="sc-fzXfLR bZCzZj">
-                    <p class="sc-fzXfLS bZKWDs">@item.DateAndStartTime</p>
-                    <div class="sc-fzXfLT bZTthB">
-                        <p class="sc-fzXfLS bZKWDs">@item.Format</p>
+    <main role="main" class="pb-3">
+        <div class="row">
+            <h2 class="font-weight-bold text-lg-left mt-0 mb-0">Мачове</h2>
+            <div class="col">
+                <form asp-controller="Games" asp-action="Index" method="get" type="text">
+                    <div>
+                        <input type="submit" value="Търси" class="float-lg-right btn-group-sm">
+                        <input type="text" name="id" class="float-lg-right form-control-sm">
                     </div>
-                </div>
-                @if (@item.HomeTeamCountry == null && @item.AwayTeamCountry == null)
-                {
-                    <div class="sc-AykKK iuNkgC team--home">
-                        <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
-                        <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
-                        <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
-                    </div>
-                    <div class="sc-AykKK iuNkgC team--away">
-                        <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
-                        <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
-                        <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
-                    </div>
-                }
-                else if (@item.HomeTeamCountry != null && @item.AwayTeamCountry == null)
-                {
-                    <a class="teamGamesLinkHover" href="@item.HomeTeamUrl">
-                        <div class="sc-AykKK iuNkgC team--home">
-                            <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
-                            <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
-                            <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
-                        </div>
-                    </a>
-                    <div class="sc-AykKK iuNkgC team--away">
-                        <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
-                        <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
-                        <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
-                    </div>
-                }
-                else if (@item.HomeTeamCountry == null && @item.AwayTeamCountry != null)
-                {
-                    <div class="sc-AykKK iuNkgC team--home">
-                        <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
-                        <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
-                        <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
-                    </div>
-                    <a class="teamGamesLinkHover" href="@item.AwayTeamUrl">
-                        <div class="sc-AykKK iuNkgC team--away">
-                            <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
-                            <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
-                            <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
-                        </div>
-                    </a>
-                }
-                else
-                {
-                    <a class="teamGamesLinkHover" href="@item.HomeTeamUrl">
-                        <div class="sc-AykKK iuNkgC team--home">
-                            <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
-                            <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
-                            <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
-                        </div>
-                    </a>
-                    <a class="teamGamesLinkHover" href="@item.AwayTeamUrl">
-                        <div class="sc-AykKK iuNkgC team--away">
-                            <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
-                            <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
-                            <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
-                        </div>
-                    </a>
-                }
-
-                <a href="@item.StadiumLocationUrl" class="sc-AykKC sc-AykKE sc-AykKH iunUub" target="_blank">Стадион</a>
-
-                @if (User.IsInRole("Admin"))
-                {
-                    <div class="float-right">
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">ПРОМЕНИ</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('Сигурен ли си, че искаш да изтриеш мача ?')">ИЗТРИЙ</a>
-                    </div>
-                }
+                </form>
             </div>
+        </div>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <hr />
+            <div>
+                <a asp-action="Create" class="btn btn-primary">НОВ МАЧ</a>
+            </div>
+            <hr />
         }
-    </div>
+        else
+        {
+            <hr class="mt-2 mb-5">
+        }
+
+        <div class="container text-break">
+            @foreach (var item in Model.Reverse())
+            {
+                <div class="sc-fzXfLQ bZudva">
+                    <div class="sc-fzXfLR bZCzZj">
+                        <p class="sc-fzXfLS bZKWDs">@item.DateAndStartTime</p>
+                        <div class="sc-fzXfLT bZTthB">
+                            <p class="sc-fzXfLS bZKWDs">@item.Format</p>
+                        </div>
+                    </div>
+                    @if (@item.HomeTeamCountry == null && @item.AwayTeamCountry == null)
+                    {
+                        <div class="sc-AykKK iuNkgC team--home">
+                            <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
+                            <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
+                            <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
+                        </div>
+                        <div class="sc-AykKK iuNkgC team--away">
+                            <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
+                            <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
+                            <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
+                        </div>
+                    }
+                    else if (@item.HomeTeamCountry != null && @item.AwayTeamCountry == null)
+                    {
+                        <a class="teamGamesLinkHover" href="@item.HomeTeamUrl">
+                            <div class="sc-AykKK iuNkgC team--home">
+                                <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
+                                <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
+                                <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
+                            </div>
+                        </a>
+                        <div class="sc-AykKK iuNkgC team--away">
+                            <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
+                            <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
+                            <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
+                        </div>
+                    }
+                    else if (@item.HomeTeamCountry == null && @item.AwayTeamCountry != null)
+                    {
+                        <div class="sc-AykKK iuNkgC team--home">
+                            <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
+                            <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
+                            <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
+                        </div>
+                        <a class="teamGamesLinkHover" href="@item.AwayTeamUrl">
+                            <div class="sc-AykKK iuNkgC team--away">
+                                <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
+                                <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
+                                <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
+                            </div>
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="teamGamesLinkHover" href="@item.HomeTeamUrl">
+                            <div class="sc-AykKK iuNkgC team--home">
+                                <img src="@item.HomeTeamLogoUrl" alt="@item.HomeTeamName" class="sc-bkzDXQ glNWhb">
+                                <p class="sc-fzXfLO bZdkmI">@item.HomeTeamName</p>
+                                <p class="sc-fzXfLP bZlGQR">@item.HomeTeamScore</p>
+                            </div>
+                        </a>
+                        <a class="teamGamesLinkHover" href="@item.AwayTeamUrl">
+                            <div class="sc-AykKK iuNkgC team--away">
+                                <img src="@item.AwayTeamLogoUrl" alt="@item.AwayTeamName" class="sc-bkzDXQ glNWhb">
+                                <p class="sc-fzXfLO bZdkmI">@item.AwayTeamName</p>
+                                <p class="sc-fzXfLP bZlGQR">@item.AwayTeamScore</p>
+                            </div>
+                        </a>
+                    }
+
+                    <a href="@item.StadiumLocationUrl" class="sc-AykKC sc-AykKE sc-AykKH iunUub" target="_blank">Стадион</a>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="float-right">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">ПРОМЕНИ</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('Сигурен ли си, че искаш да изтриеш мача ?')">ИЗТРИЙ</a>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </main>
 </div>

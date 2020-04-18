@@ -5,50 +5,52 @@
 }
 
 <div class="container-fluid text-break">
-    <div class="row">
-        <h2 class="font-weight-bold text-lg-left mt-0 mb-0">Галерия</h2>
-        <div class="col">
-            <form asp-controller="PhotoAlbums" asp-action="Index" method="get">
-                <div>
-                    <input type="submit" value="Търси" class="float-lg-right btn-group-sm">
-                    <input type="text" name="id" class="float-lg-right form-control-sm">
-                </div>
-            </form>
-        </div>
-    </div>
-
-    @if (User.IsInRole("Admin"))
-    {
-        <hr />
-        <div>
-            <a asp-action="Create" class="btn btn-primary">НОВ АЛБУМ</a>
-        </div>
-        <hr />
-    }
-    else
-    {
-        <hr class="mt-2 mb-5">
-    }
-
-    <div class="row text-center text-lg-left">
-        @foreach (var item in Model.Reverse())
-        {
-            <div id="albumIndexHover" class="col-lg-3 col-md-4 col-6">
-                <a href="@item.FacebookAlbumUrl" class="d-block mb-4" target="_blank">
+    <main role="main" class="pb-3">
+        <div class="row">
+            <h2 class="font-weight-bold text-lg-left mt-0 mb-0">Галерия</h2>
+            <div class="col">
+                <form asp-controller="PhotoAlbums" asp-action="Index" method="get">
                     <div>
-                        <img class="img-thumbnail" src="@item.ThumbnailPhotoUrl" alt="@item.Title">
-                        <h6>@item.Title - @item.EventDate</h6>
+                        <input type="submit" value="Търси" class="float-lg-right btn-group-sm">
+                        <input type="text" name="id" class="float-lg-right form-control-sm">
                     </div>
-                </a>
-                @if (User.IsInRole("Admin"))
-                {
-                    <h6>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">ПРОМЕНИ</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('Сигурен ли си, че искаш да изтриеш мача ?')">ИЗТРИЙ</a>
-                    </h6>
-                }
+                </form>
             </div>
+        </div>
 
+        @if (User.IsInRole("Admin"))
+        {
+            <hr />
+            <div>
+                <a asp-action="Create" class="btn btn-primary">НОВ АЛБУМ</a>
+            </div>
+            <hr />
         }
-    </div>
+        else
+        {
+            <hr class="mt-2 mb-5">
+        }
+
+        <div class="row text-center text-lg-left">
+            @foreach (var item in Model.Reverse())
+            {
+                <div id="albumIndexHover" class="col-lg-3 col-md-4 col-6">
+                    <a href="@item.FacebookAlbumUrl" class="d-block mb-4" target="_blank">
+                        <div>
+                            <img class="img-thumbnail" src="@item.ThumbnailPhotoUrl" alt="@item.Title">
+                            <h6>@item.Title - @item.EventDate</h6>
+                        </div>
+                    </a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <h6>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">ПРОМЕНИ</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('Сигурен ли си, че искаш да изтриеш мача ?')">ИЗТРИЙ</a>
+                        </h6>
+                    }
+                </div>
+
+            }
+        </div>
+    </main>
 </div>

@@ -5,55 +5,57 @@
 }
 
 <div class="container">
-    <h3 class="font-weight-bold">Промяна на албума</h3>
+    <main role="main" class="pb-3">
+        <h3 class="font-weight-bold">Промяна на албума</h3>
 
-    <hr />
+        <hr />
 
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" />
-                <div class="form-group">
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ThumbnailPhotoUrl" class="control-label"></label>
-                    <input asp-for="ThumbnailPhotoUrl" class="form-control" />
-                    <span asp-validation-for="ThumbnailPhotoUrl" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="FacebookAlbumUrl" class="control-label"></label>
-                    <input asp-for="FacebookAlbumUrl" class="form-control" />
-                    <span asp-validation-for="FacebookAlbumUrl" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="EventDate" class="control-label"></label>
-                    <input asp-for="EventDate" class="form-control" />
-                    <span asp-validation-for="EventDate" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="HomeTeamName" class="control-label"></label>
-                    <input asp-for="HomeTeamName" class="form-control" />
-                    <span asp-validation-for="HomeTeamName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="AwayTeamName" class="control-label"></label>
-                    <input asp-for="AwayTeamName" class="form-control" />
-                    <span asp-validation-for="AwayTeamName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="ЗАПАЗИ" class="btn btn-warning" />
-                </div>
-            </form>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ThumbnailPhotoUrl" class="control-label"></label>
+                        <input asp-for="ThumbnailPhotoUrl" class="form-control" />
+                        <span asp-validation-for="ThumbnailPhotoUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FacebookAlbumUrl" class="control-label"></label>
+                        <input asp-for="FacebookAlbumUrl" class="form-control" />
+                        <span asp-validation-for="FacebookAlbumUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EventDate" class="control-label"></label>
+                        <input asp-for="EventDate" class="form-control" />
+                        <span asp-validation-for="EventDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="HomeTeamName" class="control-label"></label>
+                        <input asp-for="HomeTeamName" class="form-control" />
+                        <span asp-validation-for="HomeTeamName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AwayTeamName" class="control-label"></label>
+                        <input asp-for="AwayTeamName" class="form-control" />
+                        <span asp-validation-for="AwayTeamName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="ЗАПАЗИ" class="btn btn-warning" />
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <div>
-        <a asp-action="Index" class="btn btn-info" role="button">КЪМ ГАЛЕРИЯ</a>
-    </div>
+        <div>
+            <a asp-action="Index" class="btn btn-info" role="button">КЪМ ГАЛЕРИЯ</a>
+        </div>
+    </main>
 </div>
 
 @section Scripts {
