@@ -244,30 +244,21 @@ div#albumIndexHover:hover h6 {
         color: #D95462 !important;
     }
 
-main section:nth-child(1) {
-    background: url(https://res.cloudinary.com/dd2kkj3w5/image/upload/v1587057121/GridironBulgaria/Home-Page-BackgroundPhoto/GridironBulgariaHomeBackground-2_ojci4t.jpg);
-    background-size: cover;
+.headerHome {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    border: 1px solid;
+    background-size: 100%;
     background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header_image {
     height: 100%;
     width: 100%;
 }
-
-div#HomeContainer{
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-main section:nth-child(1) h1 {
-    color: #F9F9F7;
-    font: 900 3.5rem / 5.14rem 'Montserrat', sans-serif;
-    width: 100%;
-    margin: 0 auto;
-}
-
-        main section:nth-child(1) h1 span {
-            color: #D95462;
-            font-weight: 900;
-        }
 
 .h2, h2 {
     padding-left: 15px !important;
