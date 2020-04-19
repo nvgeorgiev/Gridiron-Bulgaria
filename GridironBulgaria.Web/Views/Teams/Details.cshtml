@@ -4,61 +4,136 @@
     ViewData["Title"] = "Details";
 }
 
-<div class="container-fluid">
-    <main role="main" class="pb-3">
-        <h2>
-            <img src="@Html.DisplayFor(model => model.LogoUrl)" alt="" height="200" width="300">
-            @Html.DisplayFor(model => model.Name)
-        </h2>
-
-        <div>
-            <hr />
-            <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.CoverPhotoUrl)
-                </dt>
-                <dd class="col-sm-10">
-                    <img src="@Html.DisplayFor(model => model.CoverPhotoUrl)" alt="" class="teamDetailsCoverPhoto">
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.CoachName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.CoachName)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.TrainingsDescription)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.TrainingsDescription)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ContactUrl)
-                </dt>
-                <dd class="col-sm-10">
-                    <a href="@Html.DisplayFor(model => model.ContactUrl)" target="_blank">Свържи се с @Model.Name</a>
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.GamesPlayedCounter)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.GamesPlayedCounter)
-                </dd>
-            </dl>
-        </div>
-        <h6>@Html.DisplayNameFor(model => model.TeamPhotoAlbums)</h6>
-        <div>
-            @foreach (var item in Model.TeamPhotoAlbums.Reverse())
-            {
-                <div>
-                    <img src="@item.ThumbnailPhotoUrl" alt="" height="100" width="150">
-                    <a href="@item.FacebookAlbumUrl" target="_blank">@item.Title - @item.EventDate</a>
-                </div>
-            }
-        </div>
-        <div>
-            <a asp-action="Index">Back to List</a>
-            <a asp-controller="Games" asp-action="Index">Back to List</a>
-        </div>
-    </main>
+<div class="container-fluid">    
+        <a asp-controller="Games" asp-action="Index" class="float-right btn btn-outline-secondary">КЪМ МАЧОВЕ</a>    
+        <a asp-action="Index" class="float-right btn btn-outline-secondary" style="margin-right: 5px;">КЪМ ОТБОРИ</a>      
 </div>
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Team Item Heading -->
+    <h1 class="my-4">
+        <img class="img" src="@Model.LogoUrl" alt="@Model.Name" height="150"> @Model.Name.ToUpper()
+    </h1>
+
+    <!-- Portfolio Item Row -->
+    <div class="row">
+
+        <div class="col-md-8">
+            <img class="img-fluid" src="@Model.CoverPhotoUrl" alt="@Model.Name">
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="my-3">Project Description</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+            <h3 class="my-3">Project Details</h3>
+            <ul>
+                <li>Lorem Ipsum</li>
+                <li>Dolor Sit Amet</li>
+                <li>Consectetur</li>
+                <li>Adipiscing Elit</li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- /.row -->
+    <!-- Related Projects Row -->
+    <h3 class="my-4">Галерия</h3>
+
+    <hr />
+
+    <div class="row">
+
+        @foreach (var item in Model.TeamPhotoAlbums.Reverse())
+        {
+            <div id="albumIndexHover" class="col-md-3 col-sm-6 mb-4">
+                <a href="@item.FacebookAlbumUrl" class="d-block mb-4" target="_blank">
+                    <img class="img-fluid" src="@item.ThumbnailPhotoUrl" alt="@item.Title">
+                    <h6>@item.Title - @item.EventDate</h6>
+                </a>
+            </div>
+        }
+
+
+        @*<div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>*@
+
+    </div>
+    <!-- /.row -->
+
+</div>
+
+<!-- /.container -->
+@*<div class="container-fluid">
+        <main role="main" class="pb-3">
+            <h2>
+                <img src="@Html.DisplayFor(model => model.LogoUrl)" alt="" height="200" width="300">
+                @Html.DisplayFor(model => model.Name)
+            </h2>
+
+            <div>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CoverPhotoUrl)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="@Html.DisplayFor(model => model.CoverPhotoUrl)" alt="" class="teamDetailsCoverPhoto">
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CoachName)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CoachName)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.TrainingsDescription)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.TrainingsDescription)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ContactUrl)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <a href="@Html.DisplayFor(model => model.ContactUrl)" target="_blank">Свържи се с @Model.Name</a>
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.GamesPlayedCounter)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.GamesPlayedCounter)
+                    </dd>
+                </dl>
+            </div>
+            <h6>@Html.DisplayNameFor(model => model.TeamPhotoAlbums)</h6>
+            <div>
+                @foreach (var item in Model.TeamPhotoAlbums.Reverse())
+                {
+                    <div>
+                        <img src="@item.ThumbnailPhotoUrl" alt="" height="100" width="150">
+                        <a href="@item.FacebookAlbumUrl" target="_blank">@item.Title - @item.EventDate</a>
+                    </div>
+                }
+            </div>
+            <div>
+                <a asp-action="Index">Back to List</a>
+                <a asp-controller="Games" asp-action="Index">Back to List</a>
+            </div>
+        </main>
+    </div>*@
