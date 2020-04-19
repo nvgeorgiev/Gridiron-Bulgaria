@@ -293,6 +293,11 @@ svg#facebookIcon {
     padding-left: 5px !important;
 }
 
+svg#facebookTeamIcon {
+    font-size: 4.125em !important;
+    padding-left: 5px !important;
+}
+
 
 span#DateAndStartTime-error {
     color: #DC3545;
