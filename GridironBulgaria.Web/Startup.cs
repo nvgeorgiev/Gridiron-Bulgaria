@@ -102,11 +102,13 @@ namespace GridironBulgaria.Web
             var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
             IdentityResult roleResult;
-            //here in this line we are adding Admin Role
+
+            // Here in this line we are adding Admin Role.
             var roleCheck = await RoleManager.RoleExistsAsync("Admin");
+
             if (!roleCheck)
             {
-                //here in this line we are creating admin role and seed it to the database
+                // Here in this line we are creating admin role and seed it to the database.
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
             }
 
@@ -119,8 +121,8 @@ namespace GridironBulgaria.Web
 
             var UserPassword = Configuration.GetSection("UserSettings")["UserPassword"];
 
-            //here we are assigning the Admin role to the User that we have registered above 
-            //Now, we are assinging admin role to this user. When will we run this project then it will be assigned to that user.
+            // Here we are assigning the Admin role to the User that we have registered above.
+            // Now, we are assinging admin role to this user. When will we run this project then it will be assigned to that user.
             var user = await UserManager.FindByEmailAsync(Configuration.GetSection("UserSettings")["UserEmail"]);
 
             if (user == null)
@@ -141,7 +143,7 @@ namespace GridironBulgaria.Web
         {
             public string TransformOutbound(object value)
             {
-                // Slugify value
+                // Slugify value.
                 return value == null ? null : Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2").ToLower();
             }
         }
