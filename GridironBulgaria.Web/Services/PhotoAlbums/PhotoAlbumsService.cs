@@ -18,7 +18,7 @@
             this.database = database;
         }
 
-        public async Task<IEnumerable<PhotoAlbumViewModel>> GetAllPhotoAlbumsAsync(string id)
+        public async Task<IEnumerable<PhotoAlbumViewModel>> GetAllPhotoAlbumsAsync(string search)
         {
             var allPhotoAlbums = this.database.PhotoAlbums.Select(x => new PhotoAlbumViewModel
             {
@@ -29,11 +29,11 @@
                 EventDate = x.EventDate,
             });
 
-            if (!String.IsNullOrEmpty(id))
+            if (!String.IsNullOrEmpty(search))
             {
                 allPhotoAlbums = allPhotoAlbums.Where(x =>
-                x.Title.Contains(id) ||
-                x.EventDate.Contains(id));
+                x.Title.Contains(search) ||
+                x.EventDate.Contains(search));
             }
 
             return await allPhotoAlbums.ToListAsync();

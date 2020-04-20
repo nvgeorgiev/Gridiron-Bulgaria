@@ -18,7 +18,7 @@
             this.database = database;
         }
 
-        public async Task<IEnumerable<GameViewModel>> GetAllGamesAsync(string id)
+        public async Task<IEnumerable<GameViewModel>> GetAllGamesAsync(string search)
         {
             var allGames = this.database.Games.Select(x => new GameViewModel
             {
@@ -36,13 +36,13 @@
                 AwayTeamCountry = x.AwayTeam.Town.Country.Name,
             });
 
-            if (!String.IsNullOrEmpty(id))
+            if (!String.IsNullOrEmpty(search))
             {
                 allGames = allGames.Where(x =>
-                x.HomeTeamName.Contains(id) ||
-                x.AwayTeamName.Contains(id) ||
-                x.DateAndStartTime.Contains(id) ||
-                x.Format.Contains(id));
+                x.HomeTeamName.Contains(search) ||
+                x.AwayTeamName.Contains(search) ||
+                x.DateAndStartTime.Contains(search) ||
+                x.Format.Contains(search));
             }
 
             return await allGames.ToListAsync();

@@ -18,9 +18,9 @@
         }
 
         [Route("gallery")]
-        public async Task<IActionResult> Index(string id)
+        public async Task<IActionResult> Index(string search)
         {
-            var allTeams = await this.photoAlbumsService.GetAllPhotoAlbumsAsync(id);
+            var allTeams = await this.photoAlbumsService.GetAllPhotoAlbumsAsync(search);
 
             return this.View(allTeams);
         }

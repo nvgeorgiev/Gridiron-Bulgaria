@@ -15,9 +15,9 @@
             this.gamesService = gamesService;
         }
 
-        public async Task<IActionResult> Index(string id)
+        public async Task<IActionResult> Index(string search)
         {
-            var allGames = await this.gamesService.GetAllGamesAsync(id);
+            var allGames = await this.gamesService.GetAllGamesAsync(search);
 
             return this.View(allGames);
         }

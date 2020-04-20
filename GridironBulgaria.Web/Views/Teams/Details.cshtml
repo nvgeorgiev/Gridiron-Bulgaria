@@ -5,7 +5,6 @@
 }
 
 <div class="container-fluid">
-    <a asp-controller="Games" asp-action="Index" class="float-right btn btn-outline-secondary">КЪМ МАЧОВЕ</a>
     <a asp-action="Index" class="float-right btn btn-outline-secondary" style="margin-right: 5px;">КЪМ ОТБОРИ</a>
 </div>
 
@@ -50,6 +49,12 @@
             <hr />
             <div class="text-center">
                 <a href="@Html.DisplayFor(model => model.ContactUrl)" target="_blank"><i id="facebookTeamIcon" class="fab fa-facebook-square"></i></a>
+                <div>
+                </div>
+            </div>
+            <br />
+            <div class="text-center">
+                <a href="@Model.TeamGamesFilter" class="float-right btn btn-outline-secondary">ВИЖ МАЧОВЕТЕ НА @Model.Name.ToUpper()</a>
                 <div>
                 </div>
             </div>

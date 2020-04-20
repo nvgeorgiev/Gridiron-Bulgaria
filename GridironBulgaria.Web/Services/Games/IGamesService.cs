@@ -7,7 +7,7 @@
 
     public interface IGamesService
     {
-        Task<IEnumerable<GameViewModel>> GetAllGamesAsync(string id);
+        Task<IEnumerable<GameViewModel>> GetAllGamesAsync(string search);
 
         Task<int> GameCreateAsync(CreateGameViewModel inputModel);
 
