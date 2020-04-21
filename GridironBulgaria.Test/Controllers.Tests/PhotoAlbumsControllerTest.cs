@@ -1,29 +1,18 @@
 ﻿namespace GridironBulgaria.Test.Controllers.Tests
 {
-    using GridironBulgaria.Test.TestData;
     using GridironBulgaria.Web.Controllers;
     using GridironBulgaria.Web.Models;
-    using GridironBulgaria.Web.ViewModels.Teams;
+    using GridironBulgaria.Web.ViewModels.PhotoAlbums;
     using MyTested.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Linq;
     using Xunit;
 
-    public class TeamsControllerTest
+    public class PhotoAlbumsControllerTest
     {
         [Fact]
-        public void IndexShouldReturnAllTeams()
-            => MyController<TeamsController>
-                .Instance(instance => instance
-                    .WithData(TeamTestData.GetTeams(5)))
-                .Calling(c => c.Index())
-                .ShouldReturn()
-                .View(view => view
-                     .WithModelOfType<IEnumerable<TeamInfoViewModel>>());
-
-        [Fact]
         public void CreateGetShouldHaveRestrictionsForHttpGetOnlyAndAuthorizedUserAdminAndShouldReturnView()
-            => MyController<TeamsController>
+            => MyController<PhotoAlbumsController>
                 .Instance()
                 .Calling(c => c.Create())
                 .ShouldHave()
@@ -36,9 +25,9 @@
 
         [Fact]
         public void CreatePostShouldHaveRestrictionsForHttpPostOnlyAndAuthorizedUserAdmin()
-            => MyController<TeamsController>
+            => MyController<PhotoAlbumsController>
                 .Instance()
-                .Calling(c => c.Create(With.Default<CreateTeamInputModel>()))
+                .Calling(c => c.Create(With.Default<CreatePhotoAlbumViewModel>()))
                 .ShouldHave()
                 .ActionAttributes(attributes => attributes
                     .RestrictingForHttpMethod(HttpMethod.Post)
@@ -46,42 +35,44 @@
 
         [Fact]
         public void CreatePostShouldReturnViewWithTheSameModelWhenModelStateIsInvalid()
-            => MyController<TeamsController>
+            => MyController<PhotoAlbumsController>
                 .Instance()
-                .Calling(c => c.Create(With.Default<CreateTeamInputModel>()))
+                .Calling(c => c.Create(With.Default<CreatePhotoAlbumViewModel>()))
                 .ShouldHave()
                 .InvalidModelState()
                 .AndAlso()
                 .ShouldReturn()
                 .View(result => result
-                    .WithModelOfType<CreateTeamInputModel>()
-                    .Passing(team => team.Name == null));
+                    .WithModelOfType<CreatePhotoAlbumViewModel>()
+                    .Passing(album => album.Title == null));
 
         [Theory]
-        [InlineData("Test Name", "Test Country", "Test Town")]
-        public void CreatePostShouldReturnRedirectAndShouldSaveTeamWithValidTeam(string name, string country, string town)
-            => MyController<TeamsController>
+        [InlineData(1, "TestTitle", "TestThumbnailPhotoUrl", "TestFacebookAlbumUrl", "TestEventDate")]
+        public void CreatePostShouldReturnRedirectAndShouldSaveTeamWithValidTeam(
+            int id, string title, string thumbnailPhotoUrl, string facebookAlbumUrl, string eventDate)
+            => MyController<PhotoAlbumsController>
                 .Instance()
                 .WithUser(user => user.InRole("Admin"))
-                .Calling(c => c.Create(new CreateTeamInputModel
+                .Calling(c => c.Create(new CreatePhotoAlbumViewModel
                 {
-                    Name = name,
-                    CountryName = country,
-                    TownName = town,
+                    Id = id,
+                    Title = title,
+                    ThumbnailPhotoUrl = thumbnailPhotoUrl,
+                    FacebookAlbumUrl = facebookAlbumUrl,
+                    EventDate = eventDate,
                 }))
                 .ShouldHave()
                 .ValidModelState()
                 .AndAlso()
                 .ShouldHave()
                 .Data(data => data
-                    .WithSet<Team>(set =>
+                    .WithSet<PhotoAlbum>(set =>
                     {
-                        set.SingleOrDefault(team => team.Name == name);
+                        set.SingleOrDefault(album => album.Id == id);
                     }))
                 .AndAlso()
                 .ShouldReturn()
                 .Redirect(result => result
-                    .To<TeamsController>(c => c.Details(name.ToLower().Replace(' ', '-'))));
-
+                    .To<PhotoAlbumsController>(c => c.Index(null)));
     }
 }

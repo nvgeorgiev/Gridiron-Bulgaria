@@ -1,29 +1,18 @@
 ﻿namespace GridironBulgaria.Test.Controllers.Tests
 {
-    using GridironBulgaria.Test.TestData;
     using GridironBulgaria.Web.Controllers;
     using GridironBulgaria.Web.Models;
-    using GridironBulgaria.Web.ViewModels.Teams;
+    using GridironBulgaria.Web.ViewModels.Games;
     using MyTested.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Linq;
     using Xunit;
 
-    public class TeamsControllerTest
+    public class GamesControllerTest
     {
         [Fact]
-        public void IndexShouldReturnAllTeams()
-            => MyController<TeamsController>
-                .Instance(instance => instance
-                    .WithData(TeamTestData.GetTeams(5)))
-                .Calling(c => c.Index())
-                .ShouldReturn()
-                .View(view => view
-                     .WithModelOfType<IEnumerable<TeamInfoViewModel>>());
-
-        [Fact]
         public void CreateGetShouldHaveRestrictionsForHttpGetOnlyAndAuthorizedUserAdminAndShouldReturnView()
-            => MyController<TeamsController>
+            => MyController<GamesController>
                 .Instance()
                 .Calling(c => c.Create())
                 .ShouldHave()
@@ -36,9 +25,9 @@
 
         [Fact]
         public void CreatePostShouldHaveRestrictionsForHttpPostOnlyAndAuthorizedUserAdmin()
-            => MyController<TeamsController>
+            => MyController<GamesController>
                 .Instance()
-                .Calling(c => c.Create(With.Default<CreateTeamInputModel>()))
+                .Calling(c => c.Create(With.Default<CreateGameViewModel>()))
                 .ShouldHave()
                 .ActionAttributes(attributes => attributes
                     .RestrictingForHttpMethod(HttpMethod.Post)
@@ -46,42 +35,48 @@
 
         [Fact]
         public void CreatePostShouldReturnViewWithTheSameModelWhenModelStateIsInvalid()
-            => MyController<TeamsController>
+            => MyController<GamesController>
                 .Instance()
-                .Calling(c => c.Create(With.Default<CreateTeamInputModel>()))
+                .Calling(c => c.Create(With.Default<CreateGameViewModel>()))
                 .ShouldHave()
                 .InvalidModelState()
                 .AndAlso()
                 .ShouldReturn()
                 .View(result => result
-                    .WithModelOfType<CreateTeamInputModel>()
-                    .Passing(team => team.Name == null));
+                    .WithModelOfType<CreateGameViewModel>()
+                    .Passing(game => game.DateAndStartTime == null));
 
         [Theory]
-        [InlineData("Test Name", "Test Country", "Test Town")]
-        public void CreatePostShouldReturnRedirectAndShouldSaveTeamWithValidTeam(string name, string country, string town)
-            => MyController<TeamsController>
+        [InlineData(1, "TestDateAndStartTime", "TestStadiumLocationUrl", "TestFormat", 0, 0, "TestHomeTeamName", "TestAwayTeamName")]
+        public void CreatePostShouldReturnRedirectAndShouldSaveTeamWithValidTeam(
+            int id, string dateAndStartTime, string stadiumLocationUrl, string format, int homeTeamScore, 
+            int awayTeamScore, string homeTeamName, string awayTeamName)
+            => MyController<GamesController>
                 .Instance()
                 .WithUser(user => user.InRole("Admin"))
-                .Calling(c => c.Create(new CreateTeamInputModel
+                .Calling(c => c.Create(new CreateGameViewModel
                 {
-                    Name = name,
-                    CountryName = country,
-                    TownName = town,
+                    Id = id,
+                    DateAndStartTime = dateAndStartTime,
+                    StadiumLocationUrl = stadiumLocationUrl,
+                    Format = format,
+                    HomeTeamScore = homeTeamScore,
+                    AwayTeamScore = awayTeamScore,
+                    HomeTeamName = homeTeamName,
+                    AwayTeamName = awayTeamName,
                 }))
                 .ShouldHave()
                 .ValidModelState()
                 .AndAlso()
                 .ShouldHave()
                 .Data(data => data
-                    .WithSet<Team>(set =>
+                    .WithSet<Game>(set =>
                     {
-                        set.SingleOrDefault(team => team.Name == name);
+                        set.SingleOrDefault(game => game.Id == id);
                     }))
                 .AndAlso()
                 .ShouldReturn()
                 .Redirect(result => result
-                    .To<TeamsController>(c => c.Details(name.ToLower().Replace(' ', '-'))));
-
+                    .To<GamesController>(c => c.Index(null)));
     }
 }
