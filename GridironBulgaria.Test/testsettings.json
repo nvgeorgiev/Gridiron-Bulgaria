@@ -1,0 +1,11 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "My Fake Connection String"
+  },
+  "AllowedHosts": "*",
+
+  "UserSettings": {
+    "UserEmail": "testadmin@gridironbulgaria.com",
+    "UserPassword": "TestAdmin123@"
+  }
+}

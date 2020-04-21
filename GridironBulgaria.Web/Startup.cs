@@ -29,7 +29,6 @@ namespace GridironBulgaria.Web
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -96,6 +95,7 @@ namespace GridironBulgaria.Web
             CreateRoles(services).Wait();
         }
 
+        // This method is used for seeding Admin role and an admin User in the database.
         private async Task CreateRoles(IServiceProvider serviceProvider)
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -103,12 +103,10 @@ namespace GridironBulgaria.Web
 
             IdentityResult roleResult;
 
-            // Here in this line we are adding Admin Role.
             var roleCheck = await RoleManager.RoleExistsAsync("Admin");
 
             if (!roleCheck)
             {
-                // Here in this line we are creating admin role and seed it to the database.
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
             }
 
@@ -121,8 +119,6 @@ namespace GridironBulgaria.Web
 
             var UserPassword = Configuration.GetSection("UserSettings")["UserPassword"];
 
-            // Here we are assigning the Admin role to the User that we have registered above.
-            // Now, we are assinging admin role to this user. When will we run this project then it will be assigned to that user.
             var user = await UserManager.FindByEmailAsync(Configuration.GetSection("UserSettings")["UserEmail"]);
 
             if (user == null)
@@ -143,7 +139,6 @@ namespace GridironBulgaria.Web
         {
             public string TransformOutbound(object value)
             {
-                // Slugify value.
                 return value == null ? null : Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2").ToLower();
             }
         }

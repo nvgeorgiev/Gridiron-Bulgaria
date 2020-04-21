@@ -25,14 +25,15 @@
             return this.View(allTeams);
         }
 
+        [HttpGet]
         [Authorize(Policy = "RequireAdminRole")]
         public IActionResult Create()
         {
             return this.View();
         }
 
-        [Authorize(Policy = "RequireAdminRole")]
         [HttpPost]
+        [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> Create(CreatePhotoAlbumViewModel input)
         {
             if (!this.ModelState.IsValid)
@@ -53,6 +54,7 @@
             return this.RedirectToAction(nameof(this.Index));
         }
 
+        [HttpGet]
         [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -66,8 +68,8 @@
             return this.View(editViewModel);
         }
 
-        [Authorize(Policy = "RequireAdminRole")]
         [HttpPost]
+        [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> Edit(EditPhotoAlbumViewModel editInput)
         {
             if (!this.ModelState.IsValid)
