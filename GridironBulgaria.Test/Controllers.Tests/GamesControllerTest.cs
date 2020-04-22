@@ -48,7 +48,7 @@
 
         [Theory]
         [InlineData(1, "TestDateAndStartTime", "TestStadiumLocationUrl", "TestFormat", 0, 0, "TestHomeTeamName", "TestAwayTeamName")]
-        public void CreatePostShouldReturnRedirectAndShouldSaveTeamWithValidTeam(
+        public void CreatePostShouldReturnRedirectAndShouldSaveGameWithValidGame(
             int id, string dateAndStartTime, string stadiumLocationUrl, string format, int homeTeamScore, 
             int awayTeamScore, string homeTeamName, string awayTeamName)
             => MyController<GamesController>

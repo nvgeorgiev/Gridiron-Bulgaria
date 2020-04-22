@@ -1,4 +1,4 @@
-﻿namespace GridironBulgaria.Test.Routes.Tests
+﻿namespace GridironBulgaria.Test.Routing.Tests
 {
     using GridironBulgaria.Web.Controllers;
     using MyTested.AspNetCore.Mvc;

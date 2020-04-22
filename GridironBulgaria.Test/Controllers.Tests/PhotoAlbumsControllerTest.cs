@@ -48,7 +48,7 @@
 
         [Theory]
         [InlineData(1, "TestTitle", "TestThumbnailPhotoUrl", "TestFacebookAlbumUrl", "TestEventDate")]
-        public void CreatePostShouldReturnRedirectAndShouldSaveTeamWithValidTeam(
+        public void CreatePostShouldReturnRedirectAndShouldSaveAlbumWithValidAlbum(
             int id, string title, string thumbnailPhotoUrl, string facebookAlbumUrl, string eventDate)
             => MyController<PhotoAlbumsController>
                 .Instance()
