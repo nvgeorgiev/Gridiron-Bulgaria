@@ -7,9 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="testsettings.json">
+    <Content Update="config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <Content Update="testsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -36,10 +39,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GridironBulgaria.Web\GridironBulgaria.Web.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Routing.Tests\" />
   </ItemGroup>
 
 </Project>

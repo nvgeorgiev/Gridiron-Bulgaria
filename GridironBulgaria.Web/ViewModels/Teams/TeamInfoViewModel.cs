@@ -10,6 +10,6 @@
 
         public string CountryName { get; set; }
 
-        public string Url => $"/teams/{this.Name.ToLower().Replace(' ', '-')}";
+        public string Url => $"/teams/details/{this.Name.ToLower().Replace(' ', '-')}";
     }
 }

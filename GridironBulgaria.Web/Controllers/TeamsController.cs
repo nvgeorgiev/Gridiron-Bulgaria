@@ -45,6 +45,7 @@
             return this.RedirectToAction(nameof(this.Details), new { name = teamName.ToLower().Replace(' ', '-') });
         }
 
+        [Route("teams/details/{name}")]
         public async Task<IActionResult> Details(string name)
         {
             if (!this.ModelState.IsValid)

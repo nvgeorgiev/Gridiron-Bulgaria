@@ -16,7 +16,7 @@
 
         public string HomeTeamName { get; set; }
 
-        public string HomeTeamUrl => $"/teams/{this.HomeTeamName.ToLower().Replace(' ', '-')}";
+        public string HomeTeamUrl => $"/teams/details/{this.HomeTeamName.ToLower().Replace(' ', '-')}";
 
         public string HomeTeamLogoUrl { get; set; }
 
@@ -24,7 +24,7 @@
 
         public string AwayTeamName { get; set; }
 
-        public string AwayTeamUrl => $"/teams/{this.AwayTeamName.ToLower().Replace(' ', '-')}";
+        public string AwayTeamUrl => $"/teams/details/{this.AwayTeamName.ToLower().Replace(' ', '-')}";
 
         public string AwayTeamLogoUrl { get; set; }
 

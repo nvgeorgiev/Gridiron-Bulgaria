@@ -80,14 +80,9 @@ namespace GridironBulgaria.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "teamDetails",
-                    pattern: "teams/{name:minlength(3)}",
-                    new { controller = "Teams", action = "Details" });
-
-                endpoints.MapControllerRoute(
-                      name: "default",
-                      pattern: "{controller:slugify}/{action:slugify}/{id:slugify?}",
-                      defaults: new { controller = "Home", action = "Index" });
+                     name: "default",
+                     pattern: "{controller:slugify}/{action:slugify}/{id:slugify?}",
+                     defaults: new { controller = "Home", action = "Index" });
 
                 endpoints.MapRazorPages();
             });
@@ -135,6 +130,7 @@ namespace GridironBulgaria.Web
             }
         }
 
+        // This method is used to add slugified urls
         public class SlugifyParameterTransformer : IOutboundParameterTransformer
         {
             public string TransformOutbound(object value)
