@@ -25,21 +25,18 @@
             <hr />
             <p>@Model.TrainingsDescription</p>
 
+            <hr />
+            <h3 class="my-3">Треньорски състав</h3>
+            <hr />
+            <p>@Model.CoachName</p>
 
             <div>
-                <hr />
                 <dl class="row">
-                    <dt class="col-sm-4">
-                        @Html.DisplayNameFor(model => model.CoachName)
-                    </dt>
-                    <dd class="col-sm-8">
-                        @Model.CoachName
-                    </dd>
                     <dt class="col-sm-11">
                         @Html.DisplayNameFor(model => model.GamesPlayedCounter)
                     </dt>
                     <dd class="col-sm-1">
-                       @Model.GamesPlayedCounter
+                        @Model.GamesPlayedCounter
                     </dd>
                 </dl>
             </div>

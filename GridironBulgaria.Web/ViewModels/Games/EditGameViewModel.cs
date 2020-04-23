@@ -6,7 +6,7 @@
     {
         public int Id { get; set; }
 
-        [Display(Name = "Ден/Дата/Час (Събота, 1 Февруари - 14:00 Часа / КРАЙ)")]
+        [Display(Name = "Дата и Час (01/02/2020 - 14:00 Часа/КРАЙ)")]
         [Required(ErrorMessage = "Полето \"{0}\" e задължително.")]
         public string DateAndStartTime { get; set; }
 
