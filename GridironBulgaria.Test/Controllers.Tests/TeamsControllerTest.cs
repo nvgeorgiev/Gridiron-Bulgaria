@@ -4,6 +4,7 @@
     using GridironBulgaria.Web.Models;
     using GridironBulgaria.Web.ViewModels.Teams;
     using MyTested.AspNetCore.Mvc;
+    using Shouldly;
     using System.Collections.Generic;
     using System.Linq;
     using Xunit;
@@ -35,10 +36,6 @@
                                 Name = "TestCountry 1"
                             }
                         },
-                        HomeGames = new HashSet<Game>(),
-                        AwayGames = new HashSet<Game>(),
-                        HomePhotoAlbums = new HashSet<PhotoAlbum>(),
-                        AwayPhotoAlbums = new HashSet<PhotoAlbum>(),
                     }))
                 .Calling(c => c.Index())
                 .ShouldReturn()
@@ -132,10 +129,6 @@
                                 Name = "TestCountry 1"
                             }
                         },
-                        HomeGames = new HashSet<Game>(),
-                        AwayGames = new HashSet<Game>(),
-                        HomePhotoAlbums = new HashSet<PhotoAlbum>(),
-                        AwayPhotoAlbums = new HashSet<PhotoAlbum>(),
                     }))
             .Calling(c => c.Details("testname-1"))
             .ShouldReturn()
@@ -143,6 +136,172 @@
                 .WithModelOfType<TeamDetailsViewModel>()
                 .Passing(team => team.Name == "TestName 1"));
 
-        
+        [Theory]
+        [InlineData(1, TestUser.Username, null)]
+        [InlineData(1, "admin@gridironbulgaria.com", "Admin")]
+        public void DeleteShouldDeleteTeamAndRedirectWhenValidId(int teamId, string username, string role)
+            => MyController<TeamsController>
+                .Instance(instance => instance
+                    .WithUser(username, new[] { role })
+                    .WithData(new Team
+                    {
+                        Id = 1,
+                        Name = "TestName 1",
+                        LogoUrl = "TestLogoUrl 1",
+                        CoverPhotoUrl = "TestCoverPhotoUrl 1",
+                        CoachName = "TestCoachName 1",
+                        TrainingsDescription = "TestTrainingsDescription 1",
+                        ContactUrl = "TestContactUrl 1",
+                        TownId = 1,
+                        Town = new Town
+                        {
+                            Id = 1,
+                            Name = "TestTown 1",
+                            CountryId = 1,
+                            Country = new Country
+                            {
+                                Id = 1,
+                                Name = "TestCountry 1"
+                            }
+                        },
+                    }))
+                .Calling(c => c.Delete(teamId))
+                .ShouldHave()
+                .Data(data => data
+                    .WithSet<Team>(set => set.ShouldBeEmpty()))
+                .AndAlso()
+                .ShouldReturn()
+                .Redirect(redirect => redirect
+                    .To<TeamsController>(c => c.Index()));
+
+        [Theory]        
+        [InlineData(1)]
+        public void EditGetShouldReturnViewWithCorrectModelWhenUserAdmin(int teamId)
+            => MyController<TeamsController>
+                .Instance(instance => instance
+                    .WithUser(user => user.InRole("Admin"))
+                    .WithData(new Team
+                    {
+                        Id = teamId,
+                        Name = "TestName 1",
+                        LogoUrl = "TestLogoUrl 1",
+                        CoverPhotoUrl = "TestCoverPhotoUrl 1",
+                        CoachName = "TestCoachName 1",
+                        TrainingsDescription = "TestTrainingsDescription 1",
+                        ContactUrl = "TestContactUrl 1",
+                        TownId = 1,
+                        Town = new Town
+                        {
+                            Id = 1,
+                            Name = "TestTown 1",
+                            CountryId = 1,
+                            Country = new Country
+                            {
+                                Id = 1,
+                                Name = "TestCountry 1"
+                            }
+                        },
+                    }))
+                .Calling(c => c.Edit(teamId))
+                .ShouldReturn()
+                .View(view => view
+                    .WithModelOfType<EditTeamViewModel>()
+                    .Passing(team => team.Name == $"TestName {teamId}"));
+
+        [Fact]
+        public void EditPostShouldHaveRestrictionsForHttpPostOnlyAndAuthorizedUsers()
+            => MyController<TeamsController>
+                .Calling(c => c.Edit(With.Default<EditTeamViewModel>()))
+                .ShouldHave()
+                .ActionAttributes(attributes => attributes
+                    .RestrictingForHttpMethod(HttpMethod.Post)
+                    .RestrictingForAuthorizedRequests());
+
+        [Fact]
+        public void EditPostShouldReturnViewWithSameModelWhenInvalidModelState()
+            => MyController<TeamsController>
+                .Instance(instance => instance
+                    .WithUser()
+                    .WithData(new Team
+                    {
+                        Id = 1,
+                        Name = "TestName 1",
+                        LogoUrl = "TestLogoUrl 1",
+                        CoverPhotoUrl = "TestCoverPhotoUrl 1",
+                        CoachName = "TestCoachName 1",
+                        TrainingsDescription = "TestTrainingsDescription 1",
+                        ContactUrl = "TestContactUrl 1",
+                        TownId = 1,
+                        Town = new Town
+                        {
+                            Id = 1,
+                            Name = "TestTown 1",
+                            CountryId = 1,
+                            Country = new Country
+                            {
+                                Id = 1,
+                                Name = "TestCountry 1"
+                            }
+                        },
+                    }))
+                .Calling(c => c.Edit(With.Default<EditTeamViewModel>()))
+                .ShouldHave()
+                .InvalidModelState()
+                .AndAlso()
+                .ShouldReturn()
+                .View(With.Default<EditTeamViewModel>());
+
+        //[Theory]
+        //[InlineData(1, "TestNameTest", "TestTrainingsTest")]
+        //public void EditPostShouldSaveArticleAndRedirectWhenValidModelState(
+        //    int teamId,
+        //    string name,
+        //    string trainingsDescription)
+        //    => MyController<TeamsController>
+        //        .Instance(instance => instance
+        //            .WithUser(user => user.InRole("Admin"))
+        //            .WithData(new Team
+        //            {
+        //                Id = 1,
+        //                Name = "TestName 1",
+        //                LogoUrl = "TestLogoUrl 1",
+        //                CoverPhotoUrl = "TestCoverPhotoUrl 1",
+        //                CoachName = "TestCoachName 1",
+        //                TrainingsDescription = "TestTrainingsDescription 1",
+        //                ContactUrl = "TestContactUrl 1",
+        //                TownId = 1,
+        //                Town = new Town
+        //                {
+        //                    Id = 1,
+        //                    Name = "TestTown 1",
+        //                    CountryId = 1,
+        //                    Country = new Country
+        //                    {
+        //                        Id = 1,
+        //                        Name = "TestCountry 1"
+        //                    }
+        //                },
+        //            }))
+        //        .Calling(c => c.Edit(new EditTeamViewModel
+        //        {
+        //            Name = $"Edit{name}",
+        //            TrainingsDescription = $"Edit{trainingsDescription}",
+        //        }))
+        //        .ShouldHave()
+        //        .Data(data => data
+        //            .WithSet<Team>(set =>
+        //            {
+        //                set.ShouldNotBeEmpty();
+
+        //                var team = set.SingleOrDefault(t => t.Id == teamId);
+
+        //                team.ShouldNotBeNull();
+        //                team.Name.ShouldBe($"Edit{name}");
+        //                team.TrainingsDescription.ShouldBe($"Edit{trainingsDescription}");
+        //            }))
+        //        .AndAlso()
+        //        .ShouldReturn()
+        //        .Redirect(redirect => redirect
+        //            .To<TeamsController>(c => c.Details(name.ToLower().Replace(' ', '-'))));
     }
 }

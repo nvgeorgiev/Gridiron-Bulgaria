@@ -79,7 +79,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.NotFound();
+                return this.View(editInput);
             }
 
             await this.photoAlbumsService.EditPhotoAlbumAsync(editInput);

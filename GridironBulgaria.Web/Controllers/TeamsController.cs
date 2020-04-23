@@ -91,7 +91,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.NotFound();
+                return this.View(editInput);
             }
 
             var teamName = await this.teamsService.EditTeamAsync(editInput);
