@@ -249,59 +249,6 @@
                 .InvalidModelState()
                 .AndAlso()
                 .ShouldReturn()
-                .View(With.Default<EditTeamViewModel>());
-
-        //[Theory]
-        //[InlineData(1, "TestNameTest", "TestTrainingsTest")]
-        //public void EditPostShouldSaveArticleAndRedirectWhenValidModelState(
-        //    int teamId,
-        //    string name,
-        //    string trainingsDescription)
-        //    => MyController<TeamsController>
-        //        .Instance(instance => instance
-        //            .WithUser(user => user.InRole("Admin"))
-        //            .WithData(new Team
-        //            {
-        //                Id = 1,
-        //                Name = "TestName 1",
-        //                LogoUrl = "TestLogoUrl 1",
-        //                CoverPhotoUrl = "TestCoverPhotoUrl 1",
-        //                CoachName = "TestCoachName 1",
-        //                TrainingsDescription = "TestTrainingsDescription 1",
-        //                ContactUrl = "TestContactUrl 1",
-        //                TownId = 1,
-        //                Town = new Town
-        //                {
-        //                    Id = 1,
-        //                    Name = "TestTown 1",
-        //                    CountryId = 1,
-        //                    Country = new Country
-        //                    {
-        //                        Id = 1,
-        //                        Name = "TestCountry 1"
-        //                    }
-        //                },
-        //            }))
-        //        .Calling(c => c.Edit(new EditTeamViewModel
-        //        {
-        //            Name = $"Edit{name}",
-        //            TrainingsDescription = $"Edit{trainingsDescription}",
-        //        }))
-        //        .ShouldHave()
-        //        .Data(data => data
-        //            .WithSet<Team>(set =>
-        //            {
-        //                set.ShouldNotBeEmpty();
-
-        //                var team = set.SingleOrDefault(t => t.Id == teamId);
-
-        //                team.ShouldNotBeNull();
-        //                team.Name.ShouldBe($"Edit{name}");
-        //                team.TrainingsDescription.ShouldBe($"Edit{trainingsDescription}");
-        //            }))
-        //        .AndAlso()
-        //        .ShouldReturn()
-        //        .Redirect(redirect => redirect
-        //            .To<TeamsController>(c => c.Details(name.ToLower().Replace(' ', '-'))));
+                .View(With.Default<EditTeamViewModel>());        
     }
 }
