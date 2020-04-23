@@ -62,7 +62,7 @@ a.nav-link {
 .bZudva {
     min-height: 18rem;
     background-color: rgb(245, 245, 245);
-    margin: 1.6rem 0em 0em;
+    /*margin: 1.6rem 0em 0em;*/
     font: 300 1.5rem / 2.4rem 'Montserrat', sans-serif;
     font-style: normal;
     text-transform: uppercase;
@@ -72,9 +72,10 @@ a.nav-link {
 .bZudva {
     width: calc(30% - -22rem);
     margin-top: 2.5em;
-    margin-bottom: 3.75em;
+    margin-bottom: 2.75em;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
+    padding-bottom: 0.5em;
 }
 
 .bZCzZj {
