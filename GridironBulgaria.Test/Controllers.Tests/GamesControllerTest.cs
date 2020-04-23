@@ -11,6 +11,40 @@
     public class GamesControllerTest
     {
         [Fact]
+        public void IndexShouldReturnAllGames()
+            => MyController<GamesController>
+                .Instance(instance => instance
+                    .WithData(new Game
+                    {
+                        Id = 1,
+                        DateAndStartTime = "TestDateAndStartTime 1",
+                        StadiumLocationUrl = "TestStadiumLocationUrl 1",
+                        Format = "TestFormat 1",                       
+                    }))
+                .Calling(c => c.Index(null))
+                .ShouldReturn()
+                .View(view => view
+                     .WithModelOfType<IEnumerable<GameViewModel>>());
+
+        [Theory]
+        [InlineData("DateAndStartTimeTest")]
+        public void IndexShouldReturnAllAlbumsBySearchCriteria(string search)
+            => MyController<GamesController>
+                .Instance(instance => instance
+                    .WithData(new Game
+                    {
+                        Id = 1,
+                        DateAndStartTime = "TestDateAndStartTimeTest",
+                        StadiumLocationUrl = "TestStadiumLocationUrl 1",
+                        Format = "TestFormat 1",
+                    }))
+                .Calling(c => c.Index(search))
+                .ShouldReturn()
+                .View(view => view
+                     .WithModelOfType<IEnumerable<GameViewModel>>()
+                     .Passing(gameModel => gameModel.Where(x => x.DateAndStartTime.Contains(search))));
+
+        [Fact]
         public void CreateGetShouldHaveRestrictionsForHttpGetOnlyAndAuthorizedUserAdminAndShouldReturnView()
             => MyController<GamesController>
                 .Instance()

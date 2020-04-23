@@ -61,6 +61,11 @@
         [Authorize(Policy = "RequireAdminRole")]
         public async Task<IActionResult> Delete(int id)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.NotFound();
+            }
+
             await this.teamsService.DeleteByIdAsync(id);
 
             return this.RedirectToAction(nameof(this.Index));

@@ -11,6 +11,42 @@
     public class PhotoAlbumsControllerTest
     {
         [Fact]
+        public void IndexShouldReturnAllAlbums()
+            => MyController<PhotoAlbumsController>
+                .Instance(instance => instance
+                    .WithData(new PhotoAlbum
+                    {
+                        Id = 1,
+                        Title = "TestTitle 1",
+                        ThumbnailPhotoUrl = "TestThumbnailPhotoUrl 1",
+                        FacebookAlbumUrl = "TestFacebookAlbumUrl 1",
+                        EventDate = "TestEventDate 1",
+                    }))
+                .Calling(c => c.Index(null))
+                .ShouldReturn()
+                .View(view => view
+                     .WithModelOfType<IEnumerable<PhotoAlbumViewModel>>());
+
+        [Theory]
+        [InlineData("TitleTest")]
+        public void IndexShouldReturnAllAlbumsBySearchCriteria(string search)
+            => MyController<PhotoAlbumsController>
+                .Instance(instance => instance
+                    .WithData(new PhotoAlbum
+                    {
+                        Id = 1,
+                        Title = "TestTitleTest",
+                        ThumbnailPhotoUrl = "TestThumbnailPhotoUrl 1",
+                        FacebookAlbumUrl = "TestFacebookAlbumUrl 1",
+                        EventDate = "TestEventDate 1",
+                    }))
+                .Calling(c => c.Index(search))
+                .ShouldReturn()
+                .View(view => view
+                     .WithModelOfType<IEnumerable<PhotoAlbumViewModel>>()
+                     .Passing(photoAlbumModel => photoAlbumModel.Where(x => x.Title.Contains(search))));
+
+        [Fact]
         public void CreateGetShouldHaveRestrictionsForHttpGetOnlyAndAuthorizedUserAdminAndShouldReturnView()
             => MyController<PhotoAlbumsController>
                 .Instance()

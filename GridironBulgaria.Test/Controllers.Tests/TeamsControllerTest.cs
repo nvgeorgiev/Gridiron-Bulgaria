@@ -17,22 +17,22 @@
                     .WithData(new Team
                     {
                         Id = 1,
-                        Name = $"TestName 1",
-                        LogoUrl = $"TestLogoUrl 1",
-                        CoverPhotoUrl = $"TestCoverPhotoUrl 1",
-                        CoachName = $"TestCoachName 1",
-                        TrainingsDescription = $"TestTrainingsDescription 1",
-                        ContactUrl = $"TestContactUrl 1",
+                        Name = "TestName 1",
+                        LogoUrl = "TestLogoUrl 1",
+                        CoverPhotoUrl = "TestCoverPhotoUrl 1",
+                        CoachName = "TestCoachName 1",
+                        TrainingsDescription = "TestTrainingsDescription 1",
+                        ContactUrl = "TestContactUrl 1",
                         TownId = 1,
                         Town = new Town
                         {
                             Id = 1,
-                            Name = $"TestTown 1",
+                            Name = "TestTown 1",
                             CountryId = 1,
                             Country = new Country
                             {
                                 Id = 1,
-                                Name = $"TestCountry 1"
+                                Name = "TestCountry 1"
                             }
                         },
                         HomeGames = new HashSet<Game>(),
@@ -107,5 +107,42 @@
                 .Redirect(result => result
                     .To<TeamsController>(c => c.Details(name.ToLower().Replace(' ', '-'))));
 
+        [Fact]
+        public void DetailsShouldReturnViewWithCorrectModel()
+            => MyController<TeamsController>
+                .Instance(instance => instance
+                    .WithData(new Team
+                    {
+                        Id = 1,
+                        Name = "TestName 1",
+                        LogoUrl = "TestLogoUrl 1",
+                        CoverPhotoUrl = "TestCoverPhotoUrl 1",
+                        CoachName = "TestCoachName 1",
+                        TrainingsDescription = "TestTrainingsDescription 1",
+                        ContactUrl = "TestContactUrl 1",
+                        TownId = 1,
+                        Town = new Town
+                        {
+                            Id = 1,
+                            Name = "TestTown 1",
+                            CountryId = 1,
+                            Country = new Country
+                            {
+                                Id = 1,
+                                Name = "TestCountry 1"
+                            }
+                        },
+                        HomeGames = new HashSet<Game>(),
+                        AwayGames = new HashSet<Game>(),
+                        HomePhotoAlbums = new HashSet<PhotoAlbum>(),
+                        AwayPhotoAlbums = new HashSet<PhotoAlbum>(),
+                    }))
+            .Calling(c => c.Details("testname-1"))
+            .ShouldReturn()
+            .View(view => view
+                .WithModelOfType<TeamDetailsViewModel>()
+                .Passing(team => team.Name == "TestName 1"));
+
+        
     }
 }
