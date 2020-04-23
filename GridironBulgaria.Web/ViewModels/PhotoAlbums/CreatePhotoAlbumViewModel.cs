@@ -18,7 +18,7 @@
         [Required(ErrorMessage = "Полето \"{0}\" e задължително.")]
         public string FacebookAlbumUrl { get; set; }
 
-        [Display(Name = "Дата на мача (01.12.2020)")]
+        [Display(Name = "Дата на събитието (01/12/2020)")]
         [Required(ErrorMessage = "Полето \"{0}\" e задължително.")]
         public string EventDate { get; set; }
 
