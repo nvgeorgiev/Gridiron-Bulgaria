@@ -3,7 +3,6 @@
     using GridironBulgaria.Web.Controllers;
     using GridironBulgaria.Web.ViewModels.PhotoAlbums;
     using MyTested.AspNetCore.Mvc;
-    using System;
     using Xunit;
 
     public class PhotoAlbumsRouteTest

@@ -1,7 +1,7 @@
 ﻿namespace GridironBulgaria.Test.Controllers.Tests
 {
-    using MyTested.AspNetCore.Mvc;
     using GridironBulgaria.Web.Controllers;
+    using MyTested.AspNetCore.Mvc;
     using Xunit;
 
     public class HomeControllerTest

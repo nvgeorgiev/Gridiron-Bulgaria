@@ -1,10 +1,10 @@
 ﻿namespace GridironBulgaria.Web.Controllers
 {
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
     using GridironBulgaria.Web.Services.Games;
     using GridironBulgaria.Web.ViewModels.Games;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     public class GamesController : Controller
     {
@@ -48,7 +48,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             await this.gamesService.DeleteByIdAsync(id);

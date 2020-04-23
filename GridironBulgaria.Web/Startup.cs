@@ -1,24 +1,20 @@
 namespace GridironBulgaria.Web
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.HttpsPolicy;
-    using Microsoft.EntityFrameworkCore;
     using GridironBulgaria.Web.Data;
+    using GridironBulgaria.Web.Services.Games;
+    using GridironBulgaria.Web.Services.PhotoAlbums;
+    using GridironBulgaria.Web.Services.Teams;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Routing;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using GridironBulgaria.Web.Services.Teams;
-    using GridironBulgaria.Web.Services.PhotoAlbums;
-    using GridironBulgaria.Web.Services.Games;
-    using Microsoft.AspNetCore.Routing;
+    using System;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     public class Startup
     {

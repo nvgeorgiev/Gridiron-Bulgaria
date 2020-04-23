@@ -4,11 +4,8 @@
     using GridironBulgaria.Web.Models;
     using GridironBulgaria.Web.ViewModels.Teams;
     using Microsoft.EntityFrameworkCore;
-    using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     public class TeamsService : ITeamsService

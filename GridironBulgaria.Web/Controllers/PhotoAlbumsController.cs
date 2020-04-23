@@ -1,12 +1,12 @@
 ﻿namespace GridironBulgaria.Web.Controllers
 {
-    using GridironBulgaria.Web.Models;
-    using GridironBulgaria.Web.Services.PhotoAlbums;
-    using GridironBulgaria.Web.ViewModels.PhotoAlbums;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using System.Diagnostics;
     using System.Threading.Tasks;
+    using GridironBulgaria.Web.Models;
+    using GridironBulgaria.Web.Services.PhotoAlbums;
+    using GridironBulgaria.Web.ViewModels.PhotoAlbums;
 
     public class PhotoAlbumsController : Controller
     {
@@ -51,7 +51,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             await this.photoAlbumsService.DeleteByIdAsync(id);
