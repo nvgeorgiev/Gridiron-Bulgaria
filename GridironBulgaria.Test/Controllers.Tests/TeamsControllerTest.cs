@@ -136,13 +136,11 @@
                 .WithModelOfType<TeamDetailsViewModel>()
                 .Passing(team => team.Name == "TestName 1"));
 
-        [Theory]
-        [InlineData(1, TestUser.Username, null)]
-        [InlineData(1, "admin@gridironbulgaria.com", "Admin")]
-        public void DeleteShouldDeleteTeamAndRedirectWhenValidId(int teamId, string username, string role)
+        [Fact]
+        public void DeleteShouldDeleteTeamAndRedirectWhenValidId()
             => MyController<TeamsController>
                 .Instance(instance => instance
-                    .WithUser(username, new[] { role })
+                    .WithUser(user => user.InRole("Admin"))
                     .WithData(new Team
                     {
                         Id = 1,
@@ -165,7 +163,7 @@
                             }
                         },
                     }))
-                .Calling(c => c.Delete(teamId))
+                .Calling(c => c.Delete(1))
                 .ShouldHave()
                 .Data(data => data
                     .WithSet<Team>(set => set.ShouldBeEmpty()))
@@ -174,15 +172,14 @@
                 .Redirect(redirect => redirect
                     .To<TeamsController>(c => c.Index()));
 
-        [Theory]        
-        [InlineData(1)]
-        public void EditGetShouldReturnViewWithCorrectModelWhenUserAdmin(int teamId)
+        [Fact]
+        public void EditGetShouldReturnViewWithCorrectModelWhenUserAdmin()
             => MyController<TeamsController>
                 .Instance(instance => instance
                     .WithUser(user => user.InRole("Admin"))
                     .WithData(new Team
                     {
-                        Id = teamId,
+                        Id = 1,
                         Name = "TestName 1",
                         LogoUrl = "TestLogoUrl 1",
                         CoverPhotoUrl = "TestCoverPhotoUrl 1",
@@ -202,11 +199,11 @@
                             }
                         },
                     }))
-                .Calling(c => c.Edit(teamId))
+                .Calling(c => c.Edit(1))
                 .ShouldReturn()
                 .View(view => view
                     .WithModelOfType<EditTeamViewModel>()
-                    .Passing(team => team.Name == $"TestName {teamId}"));
+                    .Passing(team => team.Name == "TestName 1"));
 
         [Fact]
         public void EditPostShouldHaveRestrictionsForHttpPostOnlyAndAuthorizedUsers()
