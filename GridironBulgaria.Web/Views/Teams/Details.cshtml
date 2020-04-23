@@ -22,13 +22,14 @@
 
         <div class="col-md-4">
             <h3 class="my-3">Тренировки</h3>
-            <hr />
+           
             <p>@Model.TrainingsDescription</p>
 
             <hr />
             <h3 class="my-3">Треньорски състав</h3>
-            <hr />
+           
             <p>@Model.CoachName</p>
+            <hr />
 
             <div>
                 <dl class="row">
@@ -40,21 +41,20 @@
                     </dd>
                 </dl>
             </div>
-
+            <div class="text-center">
+                <a href="@Model.TeamGamesFilter" class="btn btn-outline-secondary btn-block">ВИЖ МАЧОВЕТЕ НА @Model.Name.ToUpper()</a>
+                <div>
+                </div>
+            </div>
+            
             <hr />
             <h3 class="my-3">Контакти</h3>
-            <hr />
+            
             <div class="text-center">
                 <a href="@Model.ContactUrl" target="_blank"><i id="facebookTeamIcon" class="fab fa-facebook-square"></i></a>
                 <div>
                 </div>
-            </div>
-            <br />
-            <div class="text-center">
-                <a href="@Model.TeamGamesFilter" class="btn btn-outline-secondary">ВИЖ МАЧОВЕТЕ НА @Model.Name.ToUpper()</a>
-                <div>
-                </div>
-            </div>
+            </div>           
         </div>
     </div>
 
