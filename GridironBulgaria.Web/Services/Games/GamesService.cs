@@ -154,6 +154,7 @@
                 Id = gameToEdit.Id,
                 DateAndStartTime = gameToEdit.DateAndStartTime,
                 StadiumLocationUrl = gameToEdit.StadiumLocationUrl,
+                Format = gameToEdit.Format,
                 HomeTeamScore = gameToEdit.HomeTeamScore,
                 AwayTeamScore = gameToEdit.AwayTeamScore,
             };
@@ -168,6 +169,7 @@
 
             game.DateAndStartTime = editInputModel.DateAndStartTime;
             game.StadiumLocationUrl = editInputModel.StadiumLocationUrl;
+            game.Format = editInputModel.Format;
             game.HomeTeamScore = editInputModel.HomeTeamScore;
             game.AwayTeamScore = editInputModel.AwayTeamScore;
 

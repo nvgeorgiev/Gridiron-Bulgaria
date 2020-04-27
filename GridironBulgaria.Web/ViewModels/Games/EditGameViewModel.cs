@@ -14,6 +14,10 @@
         [Required(ErrorMessage = "Полето \"{0}\" e задължително.")]
         public string StadiumLocationUrl { get; set; }
 
+        [Display(Name = "Формат на мача (Сезон 2020 / 1-ви Кръг)")]
+        [Required(ErrorMessage = "Полето \"{0}\" e задължително.")]
+        public string Format { get; set; }
+
         [Display(Name = "ДОМАКИНИ - Отбелязани точки")]
         [Required(ErrorMessage = "Полето \"{0}\" e задължително.")]
         [Range(0, int.MaxValue, ErrorMessage = "Отбелязаните точки не може да са отрицателни.")]
