@@ -87,7 +87,7 @@ namespace GridironBulgaria.Web
         }
 
         // This method is used for seeding Admin role and an admin User in the database.
-        private async Task CreateRoles(IServiceProvider serviceProvider)
+        public async Task CreateRoles(IServiceProvider serviceProvider)
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
