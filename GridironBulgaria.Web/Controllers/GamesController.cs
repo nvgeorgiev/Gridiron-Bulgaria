@@ -83,5 +83,10 @@
 
             return this.RedirectToAction(nameof(this.Index));
         }
+
+        public IActionResult Soon()
+        {
+            return this.View();
+        }
     }
 }
