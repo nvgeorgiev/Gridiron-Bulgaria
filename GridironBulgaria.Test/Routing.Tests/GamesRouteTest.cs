@@ -84,9 +84,9 @@
                 .To<GamesController>(c => c.Edit(1));
 
         [Theory]
-        [InlineData("TestDateTime", "TestStadiumUrl", 0, 0)]
+        [InlineData("TestDateTime", "TestStadiumUrl", "Friendly Game", 0, 0)]
         public void EditPostShouldBeRoutedCorrectlyAndHaveValidModelState(
-            string dateTime, string stadiumUrl,
+            string dateTime, string stadiumUrl, string format,
             int homeTeamScore, int awayTeamScore)
             => MyRouting
                 .Configuration()
@@ -96,7 +96,8 @@
                     .WithFormFields(new
                     {
                         DateAndStartTime = dateTime,
-                        StadiumLocationUrl = stadiumUrl,                        
+                        StadiumLocationUrl = stadiumUrl,       
+                        Format = format,
                         HomeTeamScore = homeTeamScore,
                         AwayTeamScore = awayTeamScore,                        
                     }))
@@ -105,6 +106,7 @@
                     Id = 1,
                     DateAndStartTime = dateTime,
                     StadiumLocationUrl = stadiumUrl,
+                    Format = format,
                     HomeTeamScore = homeTeamScore,
                     AwayTeamScore = awayTeamScore,
                 }))

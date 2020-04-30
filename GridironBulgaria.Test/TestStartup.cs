@@ -20,10 +20,6 @@
         public void ConfigureTestServices(IServiceCollection services)
         {
             base.ConfigureServices(services);
-
-            // services.AddTransient<ITeamsService, TeamsService>();
-            // services.AddTransient<IPhotoAlbumsService, PhotoAlbumsService>();
-            // services.AddTransient<IGamesService, GamesService>();
         }
 
         public void ConfigureTest(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider services)
